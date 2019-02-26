@@ -1,0 +1,432 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bjdvt.platform.mapper.StylePaddingMapper" >
+
+    <resultMap id="BaseResultMap" type="com.bjdvt.platform.model.StylePadding" >
+        <id column="id" property="id" jdbcType="INTEGER" />
+        <result column="props_id" property="propsId" jdbcType="INTEGER" />
+        <result column="top" property="top" jdbcType="VARCHAR" />
+        <result column="bottom" property="bottom" jdbcType="VARCHAR" />
+        <result column="pleft" property="left" jdbcType="VARCHAR" />
+        <result column="pright" property="right" jdbcType="VARCHAR" />
+        <result column="font_size" property="fontSize" jdbcType="VARCHAR" />
+        <result column="align" property="align" jdbcType="VARCHAR" />
+        <result column="bold" property="bold" jdbcType="VARCHAR" />
+        <result column="italic" property="italic" jdbcType="VARCHAR" />
+        <result column="underline" property="underline" jdbcType="VARCHAR" />
+        <result column="shadow" property="shadow" jdbcType="VARCHAR" />
+        <result column="line_height" property="lineHeight" jdbcType="VARCHAR" />
+        <result column="padding_top" property="paddingTop" jdbcType="VARCHAR" />
+        <result column="padding_bottom" property="paddingBottom" jdbcType="VARCHAR" />
+        <result column="padding_left" property="paddingLeft" jdbcType="VARCHAR" />
+        <result column="padding_right" property="paddingRight" jdbcType="VARCHAR" />
+        <result column="background_color" property="backgroundColor" jdbcType="VARCHAR" />
+    </resultMap>
+
+    <sql id="Example_Where_Clause" >
+        <where >
+            <foreach collection="oredCriteria" item="criteria" separator="or" >
+                <if test="criteria.valid" >
+                    <trim prefix="(" suffix=")" prefixOverrides="and" >
+                        <foreach collection="criteria.criteria" item="criterion" >
+                            <choose >
+                                <when test="criterion.noValue" >
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue" >
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue" >
+                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue" >
+                                    and ${criterion.condition}
+                                    <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
+            </foreach>
+        </where>
+    </sql>
+
+    <sql id="Update_By_Example_Where_Clause" >
+        <where >
+            <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+                <if test="criteria.valid" >
+                    <trim prefix="(" suffix=")" prefixOverrides="and" >
+                        <foreach collection="criteria.criteria" item="criterion" >
+                            <choose >
+                                <when test="criterion.noValue" >
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue" >
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue" >
+                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue" >
+                                    and ${criterion.condition}
+                                    <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
+            </foreach>
+        </where>
+    </sql>
+
+    <sql id="Base_Column_List" >
+        id, props_id, top, bottom, pleft, pright, font_size, align, bold, italic, underline, 
+        shadow, line_height, padding_top, padding_bottom, padding_left, padding_right, background_color
+    </sql>
+
+    <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.bjdvt.platform.model.StylePaddingExample" >
+        select
+        <if test="distinct" >
+            distinct
+        </if>
+        <include refid="Base_Column_List" />
+        from style_padding
+        <if test="_parameter != null" >
+            <include refid="Example_Where_Clause" />
+        </if>
+        <if test="orderByClause != null" >
+            order by ${orderByClause}
+        </if>
+    </select>
+
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+        select 
+        <include refid="Base_Column_List" />
+        from style_padding
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+        delete from style_padding
+        where id = #{id,jdbcType=INTEGER}
+    </delete>
+
+    <delete id="deleteByExample" parameterType="com.bjdvt.platform.model.StylePaddingExample" >
+        delete from style_padding
+        <if test="_parameter != null" >
+            <include refid="Example_Where_Clause" />
+        </if>
+    </delete>
+
+    <insert id="insert" parameterType="com.bjdvt.platform.model.StylePadding"  useGeneratedKeys="true" keyProperty="id" >
+        insert into style_padding (id, props_id, top, 
+            bottom, pleft, pright, 
+            font_size, align, bold, 
+            italic, underline, shadow, 
+            line_height, padding_top, padding_bottom, 
+            padding_left, padding_right, background_color
+            )
+        values (#{id,jdbcType=INTEGER}, #{propsId,jdbcType=INTEGER}, #{top,jdbcType=VARCHAR}, 
+            #{bottom,jdbcType=VARCHAR}, #{left,jdbcType=VARCHAR}, #{right,jdbcType=VARCHAR}, 
+            #{fontSize,jdbcType=VARCHAR}, #{align,jdbcType=VARCHAR}, #{bold,jdbcType=VARCHAR}, 
+            #{italic,jdbcType=VARCHAR}, #{underline,jdbcType=VARCHAR}, #{shadow,jdbcType=VARCHAR}, 
+            #{lineHeight,jdbcType=VARCHAR}, #{paddingTop,jdbcType=VARCHAR}, #{paddingBottom,jdbcType=VARCHAR}, 
+            #{paddingLeft,jdbcType=VARCHAR}, #{paddingRight,jdbcType=VARCHAR}, #{backgroundColor,jdbcType=VARCHAR}
+            )
+    </insert>
+
+    <insert id="insertSelective" parameterType="com.bjdvt.platform.model.StylePadding" >
+        insert into style_padding
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="id != null" >
+                id,
+            </if>
+            <if test="propsId != null" >
+                props_id,
+            </if>
+            <if test="top != null" >
+                top,
+            </if>
+            <if test="bottom != null" >
+                bottom,
+            </if>
+            <if test="left != null" >
+                pleft,
+            </if>
+            <if test="right != null" >
+                pright,
+            </if>
+            <if test="fontSize != null" >
+                font_size,
+            </if>
+            <if test="align != null" >
+                align,
+            </if>
+            <if test="bold != null" >
+                bold,
+            </if>
+            <if test="italic != null" >
+                italic,
+            </if>
+            <if test="underline != null" >
+                underline,
+            </if>
+            <if test="shadow != null" >
+                shadow,
+            </if>
+            <if test="lineHeight != null" >
+                line_height,
+            </if>
+            <if test="paddingTop != null" >
+                padding_top,
+            </if>
+            <if test="paddingBottom != null" >
+                padding_bottom,
+            </if>
+            <if test="paddingLeft != null" >
+                padding_left,
+            </if>
+            <if test="paddingRight != null" >
+                padding_right,
+            </if>
+            <if test="backgroundColor != null" >
+                background_color,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="id != null" >
+                #{id,jdbcType=INTEGER},
+            </if>
+            <if test="propsId != null" >
+                #{propsId,jdbcType=INTEGER},
+            </if>
+            <if test="top != null" >
+                #{top,jdbcType=VARCHAR},
+            </if>
+            <if test="bottom != null" >
+                #{bottom,jdbcType=VARCHAR},
+            </if>
+            <if test="left != null" >
+                #{left,jdbcType=VARCHAR},
+            </if>
+            <if test="right != null" >
+                #{right,jdbcType=VARCHAR},
+            </if>
+            <if test="fontSize != null" >
+                #{fontSize,jdbcType=VARCHAR},
+            </if>
+            <if test="align != null" >
+                #{align,jdbcType=VARCHAR},
+            </if>
+            <if test="bold != null" >
+                #{bold,jdbcType=VARCHAR},
+            </if>
+            <if test="italic != null" >
+                #{italic,jdbcType=VARCHAR},
+            </if>
+            <if test="underline != null" >
+                #{underline,jdbcType=VARCHAR},
+            </if>
+            <if test="shadow != null" >
+                #{shadow,jdbcType=VARCHAR},
+            </if>
+            <if test="lineHeight != null" >
+                #{lineHeight,jdbcType=VARCHAR},
+            </if>
+            <if test="paddingTop != null" >
+                #{paddingTop,jdbcType=VARCHAR},
+            </if>
+            <if test="paddingBottom != null" >
+                #{paddingBottom,jdbcType=VARCHAR},
+            </if>
+            <if test="paddingLeft != null" >
+                #{paddingLeft,jdbcType=VARCHAR},
+            </if>
+            <if test="paddingRight != null" >
+                #{paddingRight,jdbcType=VARCHAR},
+            </if>
+            <if test="backgroundColor != null" >
+                #{backgroundColor,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+
+    <select id="countByExample" parameterType="com.bjdvt.platform.model.StylePaddingExample" resultType="java.lang.Integer" >
+        select count(*) from style_padding
+        <if test="_parameter != null" >
+            <include refid="Example_Where_Clause" />
+        </if>
+    </select>
+
+    <update id="updateByExampleSelective" parameterType="map" >
+        update style_padding
+        <set >
+            <if test="record.id != null" >
+                id = #{record.id,jdbcType=INTEGER},
+            </if>
+            <if test="record.propsId != null" >
+                props_id = #{record.propsId,jdbcType=INTEGER},
+            </if>
+            <if test="record.top != null" >
+                top = #{record.top,jdbcType=VARCHAR},
+            </if>
+            <if test="record.bottom != null" >
+                bottom = #{record.bottom,jdbcType=VARCHAR},
+            </if>
+            <if test="record.left != null" >
+                pleft = #{record.left,jdbcType=VARCHAR},
+            </if>
+            <if test="record.right != null" >
+                pright = #{record.right,jdbcType=VARCHAR},
+            </if>
+            <if test="record.fontSize != null" >
+                font_size = #{record.fontSize,jdbcType=VARCHAR},
+            </if>
+            <if test="record.align != null" >
+                align = #{record.align,jdbcType=VARCHAR},
+            </if>
+            <if test="record.bold != null" >
+                bold = #{record.bold,jdbcType=VARCHAR},
+            </if>
+            <if test="record.italic != null" >
+                italic = #{record.italic,jdbcType=VARCHAR},
+            </if>
+            <if test="record.underline != null" >
+                underline = #{record.underline,jdbcType=VARCHAR},
+            </if>
+            <if test="record.shadow != null" >
+                shadow = #{record.shadow,jdbcType=VARCHAR},
+            </if>
+            <if test="record.lineHeight != null" >
+                line_height = #{record.lineHeight,jdbcType=VARCHAR},
+            </if>
+            <if test="record.paddingTop != null" >
+                padding_top = #{record.paddingTop,jdbcType=VARCHAR},
+            </if>
+            <if test="record.paddingBottom != null" >
+                padding_bottom = #{record.paddingBottom,jdbcType=VARCHAR},
+            </if>
+            <if test="record.paddingLeft != null" >
+                padding_left = #{record.paddingLeft,jdbcType=VARCHAR},
+            </if>
+            <if test="record.paddingRight != null" >
+                padding_right = #{record.paddingRight,jdbcType=VARCHAR},
+            </if>
+            <if test="record.backgroundColor != null" >
+                background_color = #{record.backgroundColor,jdbcType=VARCHAR},
+            </if>
+        </set>
+        <if test="_parameter != null" >
+            <include refid="Update_By_Example_Where_Clause" />
+        </if>
+    </update>
+
+    <update id="updateByExample" parameterType="map" >
+        update style_padding
+        set id = #{record.id,jdbcType=INTEGER},
+            props_id = #{record.propsId,jdbcType=INTEGER},
+            top = #{record.top,jdbcType=VARCHAR},
+            bottom = #{record.bottom,jdbcType=VARCHAR},
+            pleft = #{record.left,jdbcType=VARCHAR},
+            pright = #{record.right,jdbcType=VARCHAR},
+            font_size = #{record.fontSize,jdbcType=VARCHAR},
+            align = #{record.align,jdbcType=VARCHAR},
+            bold = #{record.bold,jdbcType=VARCHAR},
+            italic = #{record.italic,jdbcType=VARCHAR},
+            underline = #{record.underline,jdbcType=VARCHAR},
+            shadow = #{record.shadow,jdbcType=VARCHAR},
+            line_height = #{record.lineHeight,jdbcType=VARCHAR},
+            padding_top = #{record.paddingTop,jdbcType=VARCHAR},
+            padding_bottom = #{record.paddingBottom,jdbcType=VARCHAR},
+            padding_left = #{record.paddingLeft,jdbcType=VARCHAR},
+            padding_right = #{record.paddingRight,jdbcType=VARCHAR},
+            background_color = #{record.backgroundColor,jdbcType=VARCHAR}
+        <if test="_parameter != null" >
+            <include refid="Update_By_Example_Where_Clause" />
+        </if>
+    </update>
+
+    <update id="updateByPrimaryKeySelective" parameterType="com.bjdvt.platform.model.StylePadding" >
+        update style_padding
+        <set >
+            <if test="propsId != null" >
+                props_id = #{propsId,jdbcType=INTEGER},
+            </if>
+            <if test="top != null" >
+                top = #{top,jdbcType=VARCHAR},
+            </if>
+            <if test="bottom != null" >
+                bottom = #{bottom,jdbcType=VARCHAR},
+            </if>
+            <if test="left != null" >
+                pleft = #{left,jdbcType=VARCHAR},
+            </if>
+            <if test="right != null" >
+                pright = #{right,jdbcType=VARCHAR},
+            </if>
+            <if test="fontSize != null" >
+                font_size = #{fontSize,jdbcType=VARCHAR},
+            </if>
+            <if test="align != null" >
+                align = #{align,jdbcType=VARCHAR},
+            </if>
+            <if test="bold != null" >
+                bold = #{bold,jdbcType=VARCHAR},
+            </if>
+            <if test="italic != null" >
+                italic = #{italic,jdbcType=VARCHAR},
+            </if>
+            <if test="underline != null" >
+                underline = #{underline,jdbcType=VARCHAR},
+            </if>
+            <if test="shadow != null" >
+                shadow = #{shadow,jdbcType=VARCHAR},
+            </if>
+            <if test="lineHeight != null" >
+                line_height = #{lineHeight,jdbcType=VARCHAR},
+            </if>
+            <if test="paddingTop != null" >
+                padding_top = #{paddingTop,jdbcType=VARCHAR},
+            </if>
+            <if test="paddingBottom != null" >
+                padding_bottom = #{paddingBottom,jdbcType=VARCHAR},
+            </if>
+            <if test="paddingLeft != null" >
+                padding_left = #{paddingLeft,jdbcType=VARCHAR},
+            </if>
+            <if test="paddingRight != null" >
+                padding_right = #{paddingRight,jdbcType=VARCHAR},
+            </if>
+            <if test="backgroundColor != null" >
+                background_color = #{backgroundColor,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+
+    <update id="updateByPrimaryKey" parameterType="com.bjdvt.platform.model.StylePadding" >
+        update style_padding
+        set props_id = #{propsId,jdbcType=INTEGER},
+            top = #{top,jdbcType=VARCHAR},
+            bottom = #{bottom,jdbcType=VARCHAR},
+            pleft = #{left,jdbcType=VARCHAR},
+            pright = #{right,jdbcType=VARCHAR},
+            font_size = #{fontSize,jdbcType=VARCHAR},
+            align = #{align,jdbcType=VARCHAR},
+            bold = #{bold,jdbcType=VARCHAR},
+            italic = #{italic,jdbcType=VARCHAR},
+            underline = #{underline,jdbcType=VARCHAR},
+            shadow = #{shadow,jdbcType=VARCHAR},
+            line_height = #{lineHeight,jdbcType=VARCHAR},
+            padding_top = #{paddingTop,jdbcType=VARCHAR},
+            padding_bottom = #{paddingBottom,jdbcType=VARCHAR},
+            padding_left = #{paddingLeft,jdbcType=VARCHAR},
+            padding_right = #{paddingRight,jdbcType=VARCHAR},
+            background_color = #{backgroundColor,jdbcType=VARCHAR}
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+</mapper>

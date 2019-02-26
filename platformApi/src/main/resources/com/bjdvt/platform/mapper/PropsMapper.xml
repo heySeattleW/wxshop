@@ -1,0 +1,306 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bjdvt.platform.mapper.PropsMapper" >
+
+    <resultMap id="BaseResultMap" type="com.bjdvt.platform.model.Props" >
+        <id column="id" property="id" jdbcType="INTEGER" />
+        <result column="component_id" property="componentId" jdbcType="INTEGER" />
+        <result column="src" property="src" jdbcType="INTEGER" />
+        <result column="text" property="text" jdbcType="VARCHAR" />
+        <result column="title" property="title" jdbcType="VARCHAR" />
+        <result column="subtitle" property="subtitle" jdbcType="VARCHAR" />
+        <result column="style_title" property="styleTitle" jdbcType="VARCHAR" />
+        <result column="style_subtitle" property="styleSubtitle" jdbcType="VARCHAR" />
+        <result column="style_height" property="styleHeight" jdbcType="VARCHAR" />
+        <result column="style_background_color" property="styleBackgroundColor" jdbcType="VARCHAR" />
+    </resultMap>
+
+    <sql id="Example_Where_Clause" >
+        <where >
+            <foreach collection="oredCriteria" item="criteria" separator="or" >
+                <if test="criteria.valid" >
+                    <trim prefix="(" suffix=")" prefixOverrides="and" >
+                        <foreach collection="criteria.criteria" item="criterion" >
+                            <choose >
+                                <when test="criterion.noValue" >
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue" >
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue" >
+                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue" >
+                                    and ${criterion.condition}
+                                    <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
+            </foreach>
+        </where>
+    </sql>
+
+    <sql id="Update_By_Example_Where_Clause" >
+        <where >
+            <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+                <if test="criteria.valid" >
+                    <trim prefix="(" suffix=")" prefixOverrides="and" >
+                        <foreach collection="criteria.criteria" item="criterion" >
+                            <choose >
+                                <when test="criterion.noValue" >
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue" >
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue" >
+                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue" >
+                                    and ${criterion.condition}
+                                    <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
+            </foreach>
+        </where>
+    </sql>
+
+    <sql id="Base_Column_List" >
+        id, component_id, src, text, title, subtitle, style_title, style_subtitle, style_height, 
+        style_background_color
+    </sql>
+
+    <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.bjdvt.platform.model.PropsExample" >
+        select
+        <if test="distinct" >
+            distinct
+        </if>
+        <include refid="Base_Column_List" />
+        from props
+        <if test="_parameter != null" >
+            <include refid="Example_Where_Clause" />
+        </if>
+        <if test="orderByClause != null" >
+            order by ${orderByClause}
+        </if>
+    </select>
+
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+        select 
+        <include refid="Base_Column_List" />
+        from props
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+        delete from props
+        where id = #{id,jdbcType=INTEGER}
+    </delete>
+
+    <delete id="deleteByExample" parameterType="com.bjdvt.platform.model.PropsExample" >
+        delete from props
+        <if test="_parameter != null" >
+            <include refid="Example_Where_Clause" />
+        </if>
+    </delete>
+
+    <insert id="insert" parameterType="com.bjdvt.platform.model.Props"   useGeneratedKeys="true" keyProperty="id" >
+        insert into props (id, component_id, src, 
+            text, title, subtitle, 
+            style_title, style_subtitle, style_height, 
+            style_background_color)
+        values (#{id,jdbcType=INTEGER}, #{componentId,jdbcType=INTEGER}, #{src,jdbcType=INTEGER}, 
+            #{text,jdbcType=VARCHAR}, #{title,jdbcType=VARCHAR}, #{subtitle,jdbcType=VARCHAR}, 
+            #{styleTitle,jdbcType=VARCHAR}, #{styleSubtitle,jdbcType=VARCHAR}, #{styleHeight,jdbcType=VARCHAR}, 
+            #{styleBackgroundColor,jdbcType=VARCHAR})
+    </insert>
+
+    <insert id="insertSelective" parameterType="com.bjdvt.platform.model.Props" >
+        insert into props
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="id != null" >
+                id,
+            </if>
+            <if test="componentId != null" >
+                component_id,
+            </if>
+            <if test="src != null" >
+                src,
+            </if>
+            <if test="text != null" >
+                text,
+            </if>
+            <if test="title != null" >
+                title,
+            </if>
+            <if test="subtitle != null" >
+                subtitle,
+            </if>
+            <if test="styleTitle != null" >
+                style_title,
+            </if>
+            <if test="styleSubtitle != null" >
+                style_subtitle,
+            </if>
+            <if test="styleHeight != null" >
+                style_height,
+            </if>
+            <if test="styleBackgroundColor != null" >
+                style_background_color,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="id != null" >
+                #{id,jdbcType=INTEGER},
+            </if>
+            <if test="componentId != null" >
+                #{componentId,jdbcType=INTEGER},
+            </if>
+            <if test="src != null" >
+                #{src,jdbcType=INTEGER},
+            </if>
+            <if test="text != null" >
+                #{text,jdbcType=VARCHAR},
+            </if>
+            <if test="title != null" >
+                #{title,jdbcType=VARCHAR},
+            </if>
+            <if test="subtitle != null" >
+                #{subtitle,jdbcType=VARCHAR},
+            </if>
+            <if test="styleTitle != null" >
+                #{styleTitle,jdbcType=VARCHAR},
+            </if>
+            <if test="styleSubtitle != null" >
+                #{styleSubtitle,jdbcType=VARCHAR},
+            </if>
+            <if test="styleHeight != null" >
+                #{styleHeight,jdbcType=VARCHAR},
+            </if>
+            <if test="styleBackgroundColor != null" >
+                #{styleBackgroundColor,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+
+    <select id="countByExample" parameterType="com.bjdvt.platform.model.PropsExample" resultType="java.lang.Integer" >
+        select count(*) from props
+        <if test="_parameter != null" >
+            <include refid="Example_Where_Clause" />
+        </if>
+    </select>
+
+    <update id="updateByExampleSelective" parameterType="map" >
+        update props
+        <set >
+            <if test="record.id != null" >
+                id = #{record.id,jdbcType=INTEGER},
+            </if>
+            <if test="record.componentId != null" >
+                component_id = #{record.componentId,jdbcType=INTEGER},
+            </if>
+            <if test="record.src != null" >
+                src = #{record.src,jdbcType=INTEGER},
+            </if>
+            <if test="record.text != null" >
+                text = #{record.text,jdbcType=VARCHAR},
+            </if>
+            <if test="record.title != null" >
+                title = #{record.title,jdbcType=VARCHAR},
+            </if>
+            <if test="record.subtitle != null" >
+                subtitle = #{record.subtitle,jdbcType=VARCHAR},
+            </if>
+            <if test="record.styleTitle != null" >
+                style_title = #{record.styleTitle,jdbcType=VARCHAR},
+            </if>
+            <if test="record.styleSubtitle != null" >
+                style_subtitle = #{record.styleSubtitle,jdbcType=VARCHAR},
+            </if>
+            <if test="record.styleHeight != null" >
+                style_height = #{record.styleHeight,jdbcType=VARCHAR},
+            </if>
+            <if test="record.styleBackgroundColor != null" >
+                style_background_color = #{record.styleBackgroundColor,jdbcType=VARCHAR},
+            </if>
+        </set>
+        <if test="_parameter != null" >
+            <include refid="Update_By_Example_Where_Clause" />
+        </if>
+    </update>
+
+    <update id="updateByExample" parameterType="map" >
+        update props
+        set id = #{record.id,jdbcType=INTEGER},
+            component_id = #{record.componentId,jdbcType=INTEGER},
+            src = #{record.src,jdbcType=INTEGER},
+            text = #{record.text,jdbcType=VARCHAR},
+            title = #{record.title,jdbcType=VARCHAR},
+            subtitle = #{record.subtitle,jdbcType=VARCHAR},
+            style_title = #{record.styleTitle,jdbcType=VARCHAR},
+            style_subtitle = #{record.styleSubtitle,jdbcType=VARCHAR},
+            style_height = #{record.styleHeight,jdbcType=VARCHAR},
+            style_background_color = #{record.styleBackgroundColor,jdbcType=VARCHAR}
+        <if test="_parameter != null" >
+            <include refid="Update_By_Example_Where_Clause" />
+        </if>
+    </update>
+
+    <update id="updateByPrimaryKeySelective" parameterType="com.bjdvt.platform.model.Props" >
+        update props
+        <set >
+            <if test="componentId != null" >
+                component_id = #{componentId,jdbcType=INTEGER},
+            </if>
+            <if test="src != null" >
+                src = #{src,jdbcType=INTEGER},
+            </if>
+            <if test="text != null" >
+                text = #{text,jdbcType=VARCHAR},
+            </if>
+            <if test="title != null" >
+                title = #{title,jdbcType=VARCHAR},
+            </if>
+            <if test="subtitle != null" >
+                subtitle = #{subtitle,jdbcType=VARCHAR},
+            </if>
+            <if test="styleTitle != null" >
+                style_title = #{styleTitle,jdbcType=VARCHAR},
+            </if>
+            <if test="styleSubtitle != null" >
+                style_subtitle = #{styleSubtitle,jdbcType=VARCHAR},
+            </if>
+            <if test="styleHeight != null" >
+                style_height = #{styleHeight,jdbcType=VARCHAR},
+            </if>
+            <if test="styleBackgroundColor != null" >
+                style_background_color = #{styleBackgroundColor,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+
+    <update id="updateByPrimaryKey" parameterType="com.bjdvt.platform.model.Props" >
+        update props
+        set component_id = #{componentId,jdbcType=INTEGER},
+            src = #{src,jdbcType=INTEGER},
+            text = #{text,jdbcType=VARCHAR},
+            title = #{title,jdbcType=VARCHAR},
+            subtitle = #{subtitle,jdbcType=VARCHAR},
+            style_title = #{styleTitle,jdbcType=VARCHAR},
+            style_subtitle = #{styleSubtitle,jdbcType=VARCHAR},
+            style_height = #{styleHeight,jdbcType=VARCHAR},
+            style_background_color = #{styleBackgroundColor,jdbcType=VARCHAR}
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+</mapper>

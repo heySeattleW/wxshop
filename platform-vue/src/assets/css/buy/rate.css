@@ -1,0 +1,216 @@
+/* CSS Document */
+.page {
+  margin: 0;
+  padding: 0;
+  min-height: 100%;
+  font-family: "iconfont", "Microsoft YaHei" !important;
+  font-size: 16px;
+  overflow-x: hidden;
+}
+
+page {
+  background-color: #efeef6;
+}
+
+.item {
+  border-color: #ddd;
+  background-color: #fff;
+  color: #444;
+  position: relative;
+  z-index: 2;
+  display: block;
+  padding: 16px;
+  border-width: 1px;
+  border-style: solid;
+  font-size: 16px;
+}
+
+.button:after {
+  position: absolute;
+  top: -6px;
+  right: -6px;
+  bottom: -6px;
+  left: -6px;
+  content: ' ';
+}
+
+.button-block {
+  display: block;
+  clear: both;
+}
+
+.button.button-positive {
+  border-color: transparent;
+  background-color: #387ef5;
+  color: #fff;
+}
+
+.button.button-block, .button.button-full {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.button-block:after {
+  clear: both;
+}
+
+.backgTr {
+  background-color: transparent;
+}
+
+.backgW {
+  background-color: #fff !important;
+}
+
+.item.borderN, .panel-footer.borderN {
+  border: none;
+}
+
+.panel-body {
+  padding: 15px;
+}
+
+.mg-r-md {
+  margin-right: 15px;
+}
+
+.mg-r-xs {
+  margin-right: 5px;
+}
+
+.fontS14 {
+  font-size: 14px;
+}
+
+.fontS16 {
+  font-size: 16px;
+}
+
+.imgW16 {
+  width: 16px;
+  height: 16px;
+}
+
+.imgW20 {
+  width: 20px;
+  height: 20px;
+}
+
+.pull-right.imgW16 {
+  position: absolute;
+  top: 50%;
+  right: 11px;
+  display: block;
+  margin-top: -8px;
+}
+
+.imgW50 {
+  width: 50px;
+  height: 50px;
+}
+
+.imgW60 {
+  width: 60px;
+  height: 60px;
+}
+
+.item.border-b, .border-b {
+  border-bottom: solid 1px #ddd;
+}
+
+.pd-l-0 {
+  padding-left: 0;
+}
+
+.col-gary {
+  color: #aaa;
+}
+
+span, img {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.button-blue {
+  color: #ffffff;
+  background-color: #2aa2c1;
+}
+
+.button-red {
+  color: #ffffff;
+  background-color: #f00;
+}
+
+.button.button-blue-clik, .button-blue-clik {
+  border-color: #067fc1;
+  background-color: #067fc1;
+  color: #fff;
+  box-shadow: inset 0px 1px 3px rgba(0, 0, 0, 0.15);
+}
+
+.pos-re {
+  position: relative;
+}
+
+.button-del {
+  color: #fff;
+  background-color: rgba(0, 0, 0, .7);
+  display: inline-block;
+  position: absolute;
+  top: 14px;
+  right: 10px;
+  padding: 4px;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+.button-del img {
+  vertical-align: sub;
+}
+
+.imgbox5 {
+  width: 18%;
+  margin-right: 2%;
+  margin-bottom: 10px;
+  display: inline-block;
+  padding: 0;
+  box-sizing: border-box;
+  border: solid 1px #ccc;
+}
+
+.imgbox5 > img {
+  display: block;
+}
+
+.button-del3 {
+  display: inline-block;
+  position: absolute;
+  top: -2px;
+  left: 38px;
+  z-index: 2;
+}
+
+.mg-t-xs {
+  margin-top: 5px;
+}
+
+.full {
+  width: 100%
+}
+
+.op7 {
+  opacity: 0.7;
+}
+
+.imgW40 {
+  width: 40px;
+  height: 40px;
+}
+
+.pos-ab.imgW40 {
+  position: absolute;
+  top: 50%;
+  margin-top: -20px;
+  left: 50%;
+  margin-left: -20px;
+}

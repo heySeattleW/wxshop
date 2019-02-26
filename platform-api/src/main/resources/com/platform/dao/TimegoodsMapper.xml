@@ -1,0 +1,286 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.platform.dao.TimegoodsMapper">
+
+    <resultMap type="com.platform.entity.TimegoodsEntity" id="BaseResultMap">
+        <result property="id" column="id"/>
+        <result property="goodsId" column="goods_id"/>
+        <result property="startTime" column="start_time"/>
+        <result property="endTime" column="end_time"/>
+        <result property="rebate" column="rebate"/>
+        <result property="appId" column="app_id"/>
+    </resultMap>
+
+    <sql id="Example_Where_Clause" >
+        <where >
+            <foreach collection="oredCriteria" item="criteria" separator="or" >
+                <if test="criteria.valid" >
+                    <trim prefix="(" suffix=")" prefixOverrides="and" >
+                        <foreach collection="criteria.criteria" item="criterion" >
+                            <choose >
+                                <when test="criterion.noValue" >
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue" >
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue" >
+                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue" >
+                                    and ${criterion.condition}
+                                    <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
+            </foreach>
+        </where>
+    </sql>
+    <sql id="Update_By_Example_Where_Clause" >
+        <where >
+            <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+                <if test="criteria.valid" >
+                    <trim prefix="(" suffix=")" prefixOverrides="and" >
+                        <foreach collection="criteria.criteria" item="criterion" >
+                            <choose >
+                                <when test="criterion.noValue" >
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue" >
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue" >
+                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue" >
+                                    and ${criterion.condition}
+                                    <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
+            </foreach>
+        </where>
+    </sql>
+    <sql id="Base_Column_List" >
+	    `id`,
+	    `goods_id`,
+	    `start_time`,
+	    `end_time`,
+	    `rebate`,
+	    `app_id`
+  	</sql>
+
+
+    <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.platform.entity.example.TimegoodsExample" >
+        select
+        <if test="distinct" >
+            distinct
+        </if>
+        <include refid="Base_Column_List" />
+        from nideshop_timegoods
+        <if test="_parameter != null" >
+            <include refid="Example_Where_Clause" />
+        </if>
+        <if test="orderByClause != null" >
+            order by ${orderByClause}
+        </if>
+        <if test="pageStart!=null and pageStart gt -1" >
+            limit ${pageStart},${pageSize}
+        </if>
+    </select>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+        select
+        <include refid="Base_Column_List" />
+        from nideshop_timegoods
+        where id = #{id,jdbcType=BIGINT}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+        delete from nideshop_timegoods
+        where id = #{id,jdbcType=BIGINT}
+    </delete>
+    <delete id="deleteByExample" parameterType="com.platform.entity.example.TimegoodsExample" >
+        delete from nideshop_timegoods
+        <if test="_parameter != null" >
+            <include refid="Example_Where_Clause" />
+        </if>
+    </delete>
+    <delete id="deleteBatch">
+        delete from nideshop_timegoods where id in
+<foreach item="id" collection="array" open="(" separator="," close=")">
+          #{id}
+</foreach>
+    </delete>
+    <insert id="insert" parameterType="com.platform.entity.TimegoodsEntity" useGeneratedKeys="true" keyProperty="id">
+		insert into nideshop_timegoods(
+          `goods_id`,
+          `start_time`,
+          `end_time`,
+          `rebate`,
+          `app_id`        )
+		values(
+          #{goodsId},
+          #{startTime},
+          #{endTime},
+          #{rebate},
+          #{appId}         )
+	</insert>
+
+
+    <insert id="insertSelective" parameterType="com.platform.entity.TimegoodsEntity" useGeneratedKeys="true" keyProperty="id">
+        insert into nideshop_timegoods
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+          <if test="goodsId != null">
+            `goods_id`,
+          </if>
+          <if test="startTime != null">
+            `start_time`,
+          </if>
+          <if test="endTime != null">
+            `end_time`,
+          </if>
+          <if test="rebate != null">
+            `rebate`,
+          </if>
+          <if test="appId != null">
+            `app_id`
+          </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="goodsId != null">
+              #{goodsId},
+            </if>
+            <if test="startTime != null">
+              #{startTime},
+            </if>
+            <if test="endTime != null">
+              #{endTime},
+            </if>
+            <if test="rebate != null">
+              #{rebate},
+            </if>
+            <if test="appId != null">
+              #{appId}
+            </if>
+        </trim>
+    </insert>
+
+    <select id="countByExample" parameterType="com.platform.entity.example.TimegoodsExample" resultType="java.lang.Integer" >
+        select count(*) from nideshop_timegoods
+        <if test="_parameter != null" >
+            <include refid="Example_Where_Clause" />
+        </if>
+    </select>
+    <update id="updateByExampleSelective" parameterType="map" >
+        update nideshop_timegoods
+        <set>
+          <if test="goodsId != null">
+              `goods_id` = #{goodsId},
+          </if>
+          <if test="startTime != null">
+              `start_time` = #{startTime},
+          </if>
+          <if test="endTime != null">
+              `end_time` = #{endTime},
+          </if>
+          <if test="rebate != null">
+              `rebate` = #{rebate},
+          </if>
+          <if test="appId != null">
+              `app_id` = #{appId}
+          </if>
+        </set>
+        <if test="_parameter != null" >
+            <include refid="Update_By_Example_Where_Clause" />
+        </if>
+    </update>
+    <update id="updateByExample" parameterType="map" >
+        update nideshop_timegoods
+        <set>
+          `goods_id` = #{goodsId},
+          `start_time` = #{startTime},
+          `end_time` = #{endTime},
+          `rebate` = #{rebate},
+          `app_id` = #{appId}
+        </set>
+        <if test="_parameter != null" >
+            <include refid="Update_By_Example_Where_Clause" />
+        </if>
+    </update>
+
+    <update id="updateByPrimaryKeySelective" parameterType="com.platform.entity.TimegoodsEntity">
+        update nideshop_timegoods
+        <set>
+          <if test="goodsId != null">
+            `goods_id` = #{goodsId},
+          </if>
+          <if test="startTime != null">
+            `start_time` = #{startTime},
+          </if>
+          <if test="endTime != null">
+            `end_time` = #{endTime},
+          </if>
+          <if test="rebate != null">
+            `rebate` = #{rebate},
+          </if>
+          <if test="appId != null">
+            `app_id` = #{appId}
+          </if>
+        </set>
+        where id = #{id}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.platform.entity.TimegoodsEntity" >
+        update nideshop_timegoods
+        <set>
+            `goods_id` = #{goodsId},
+            `start_time` = #{startTime},
+            `end_time` = #{endTime},
+            `rebate` = #{rebate},
+            `app_id` = #{appId}
+        </set>
+        where id = #{id,jdbcType=BIGINT}
+  </update>
+
+
+    <select id="queryList" resultType="com.platform.entity.TimegoodsEntity">
+        select
+          `id`,
+          `goods_id`,
+          `start_time`,
+          `end_time`,
+          `rebate`,
+          `app_id`
+        from nideshop_timegoods
+        WHERE 1=1
+        <if test="name != null and name.trim() != ''">
+            AND name LIKE concat('%',#{name},'%')
+        </if>
+        <choose>
+            <when test="sidx != null and sidx.trim() != ''">
+                order by ${sidx} ${order}
+            </when>
+            <otherwise>
+                order by id desc
+            </otherwise>
+        </choose>
+        <if test="offset != null and limit != null">
+            limit #{offset}, #{limit}
+        </if>
+    </select>
+
+    <select id="queryTotal" resultType="int">
+        select count(*) from nideshop_timegoods
+        WHERE 1=1
+        <if test="name != null and name.trim() != ''">
+            AND name LIKE concat('%',#{name},'%')
+        </if>
+    </select>
+</mapper>

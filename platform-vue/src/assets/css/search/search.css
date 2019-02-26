@@ -1,0 +1,390 @@
+view,image,text,navigator{
+  box-sizing: border-box;
+  padding:0;
+  margin:0;
+}
+
+view,text{
+  font-family: PingFangSC-Light,helvetica,'Heiti SC';
+  font-size: 14px;
+  color: #333;
+}
+
+button::after {
+  display: none;
+}
+
+page{
+  min-height: 100%;
+  background-color: #f4f4f4;
+}
+
+.container{
+  min-height: 100%;
+  background-color: #f4f4f4;
+}
+
+.search-header{
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  /*width: 375px;*/
+  height: 45px;
+  display: flex;
+  background: #fff;
+  border-bottom: 1px solid rgba(0,0,0,.15);
+  padding: 0 15px;
+  font-size: 14px;
+  color: #333;
+}
+
+.search-header .input-box{
+  position: relative;
+  margin-top: 8px;
+  float: left;
+  width: 0;
+  flex: 1;
+  height: 29px;
+  line-height: 29px;
+  padding: 0 10px;
+  background: #f4f4f4;
+}
+
+.search-header .icon{
+  position: absolute;
+  top: 7px;
+  left: 10px;
+  width: 15px;
+  height: 15px;
+  z-index: 3;
+}
+
+.search-header .del{
+  position: absolute;
+  top: 1px;
+  right: 5px;
+  width: 26px;
+  height: 26px;
+  z-index: 10;
+}
+
+.search-header .keyword{
+  position: absolute;
+  top: 0;
+  left: 20px;
+  width: 253px;
+  height: 29px;
+  padding-left: 15px;
+  outline: 0;
+  background-color: transparent;
+  color: rgba(0,0,0,.8);
+}
+
+.search-header .right{
+  margin-top: 12px;
+  margin-left: 15px;
+  margin-right: 3px;
+  width: 29px;
+  height: 21px;
+  line-height: 21px;
+  float: right;
+}
+
+.no-search{
+  height: auto;
+  overflow: hidden;
+  margin-top: 45px;
+}
+
+.search-keywords{
+  background: #fff;
+  width: 375px;
+  height: auto;
+  overflow: hidden;
+  margin-bottom: 10px;
+}
+
+.search-keywords .h{
+  padding: 0 15px;
+  height: 46px;
+  line-height: 46px;
+  width: 100%;
+  color: #999;
+  font-size: 14px;
+}
+
+.search-keywords .title{
+  display: block;
+  width: 60px;
+  float: left;
+}
+
+.search-keywords .icon{
+  margin-top: 9px;
+  float: right;
+  display: block;
+  margin-left: 205px;
+  height: 22px;
+  width: 22px;
+}
+
+.search-keywords .b{
+  width: 375px;
+  height: auto;
+  overflow: hidden;
+  padding-left: 15px;
+}
+
+.search-keywords .item{
+  display: inline-block;
+  width: auto;
+  height: 24px;
+  line-height: 24px;
+  padding:0 7px;
+  border: 1px solid #999;
+  margin: 0 15px 15px 0;
+  font-size: 12px;
+  color: #333;
+}
+
+.search-keywords .item.active{
+  color: #b4282d;
+  border: 1px solid #b4282d;
+}
+
+.shelper-list{
+  width: 375px;
+  height: auto;
+  overflow: hidden;
+  background: #fff;
+  padding: 0 15px;
+}
+
+.shelper-list .item{
+  height: 46px;
+  width: 343px;
+  line-height: 46px;
+  font-size: 12px;
+  color: #333;
+  border-bottom: 1px solid #f4f4f4;
+}
+
+
+.sort{
+  position: fixed;
+  top: 45px;
+  background: #fff;
+  width: 100%;
+  height: 40px;
+  z-index: 2;
+}
+
+.sort-box{
+  background: #fff;
+  width: 100%;
+  height: 39px;
+  overflow: hidden;
+  padding: 0 15px;
+  display: flex;
+  border-bottom: 1px solid #d9d9d9;
+  border-top: 1px solid #d9d9d9;
+  box-sizing: border-box;
+}
+
+.sort-box .item{
+  height: 39px;
+  line-height: 39px;
+  text-align: center;
+  flex:1;
+  color: #333;
+  font-size: 14px;
+}
+
+.sort-box .item .txt{
+  display: block;
+  width: 100%;
+  height: 100%;
+  color: #333;
+}
+
+.sort-box .item.active .txt{
+  color: #b4282d;
+}
+
+.sort-box .item.by-price{
+  background: url(https://ossyf.oss-cn-beijing.aliyuncs.com/20181106/161624299e75ac.png) 80px center no-repeat;
+  background-size: 7px 10px;
+}
+
+.sort-box .item.by-price.active.asc{
+  background: url(https://ossyf.oss-cn-beijing.aliyuncs.com/20181106/161702484bcce3.png) 80px center no-repeat;
+  background-size: 7px 10px;
+}
+
+.sort-box .item.by-price.active.desc{
+  background: url(https://ossyf.oss-cn-beijing.aliyuncs.com/20181106/161713652877fc.png) 80px center no-repeat;
+  background-size: 7px 10px;
+}
+
+.sort-box-category{
+  height: auto;
+  overflow: hidden;
+  border-bottom: 1px solid #d9d9d9;
+
+  position: absolute;
+  z-index: 20;
+  top: 40px;
+  left: 0;
+  width: 100%;
+  overflow-y: scroll;
+  max-height: 4rem;
+  /*padding: .53333rem .86667rem .26667rem;*/
+  padding: 20px 20px 10px 20px;
+  background-color: #fff;
+  box-sizing: border-box;
+}
+
+.sort-box-category .item{
+  height: 27px;
+  line-height: 27px;
+  text-align: center;
+  float: left;
+  padding: 0 8px;
+  /*margin: 0 20px 20px 0;*/
+  margin-right: 20px;
+  border: 1px solid #7f7f7f;
+  color: #333;
+  font-size: 12px;
+  border-radius: 4px;
+}
+
+.sort-box-category .item.active{
+  color: #b4282d;
+  border: 1px solid #b4282d;
+}
+
+.cate-item{
+  /*margin-top: 86px;*/
+  height: auto;
+  overflow: hidden;
+  position: absolute;
+  top: 87px;
+  height:581px;
+  width:100%;
+}
+
+.cate-item .h{
+  height: 72px;
+  width: 375px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.cate-item .h .name{
+  display: block;
+  height: 17px;
+  margin-bottom: 9px;
+  font-size: 15px;
+  color: #333;
+}
+
+.cate-item .h .desc{
+  display: block;
+  height: 12px;
+  font-size: 12px;
+  color: #999;
+}
+
+.cate-item .b{
+  /*width: 375px;*/
+  width: 100%;
+  padding: 0 3px;
+  height: auto;
+  overflow: hidden;
+  box-sizing:border-box;
+  -moz-box-sizing:border-box; /* Firefox */
+  -webkit-box-sizing:border-box; /* Safari */
+}
+
+.cate-item .list-filter{
+  height: 40px;
+  width: 100%;
+  background: #fff;
+  margin-bottom: 3px;
+}
+
+.cate-item .b .item{
+  float: left;
+  background: #fff;
+  /*width: 182px;*/
+  width: 49%;
+  margin-bottom: 3px;
+  padding-bottom: 16px;
+  height: auto;
+  overflow: hidden;
+  text-align: center;
+}
+
+.cate-item .b .item-b{
+  /*margin-left: 3px;*/
+}
+.cate-item .b .item:nth-of-type(odd){
+  margin-right: 1%;
+}
+.cate-item .b .item:nth-of-type(even){
+  margin-left: 1%;
+}
+.cate-item .item .img{
+  width: 151px;
+  height: 151px;
+}
+
+.cate-item .item .name{
+  display: block;
+  /*width: 182px;*/
+  width:100%;
+  /*height: 17px;*/
+  margin: 5px 0 11px 0;
+  text-align: center;
+  overflow: hidden;
+  padding: 0 10px;
+  font-size: 14px;
+  color: #333;
+  box-sizing: border-box;
+  text-overflow:ellipsis; white-space:nowrap;
+}
+
+.cate-item .item .price{
+  display: block;
+  /*width: 182px;*/
+  width:100%;
+  height: 15px;
+  text-align: center;
+  font-size: 15px;
+  color: #b4282d;
+}
+
+.search-result-empty{
+  width: 100%;
+  height: 100%;
+  padding-top: 150px;
+}
+
+.search-result-empty .icon{
+  margin: 0 auto;
+  display: block;
+  width: 120px;
+  height: 120px;
+}
+
+.search-result-empty .text{
+  display: block;
+  width: 100%;
+  height: 20px;
+  font-size: 14px;
+  text-align: center;
+  color: #999;
+}

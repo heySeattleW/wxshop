@@ -1,0 +1,309 @@
+div, span {
+  font-family: PingFangSC-Light, helvetica, 'Heiti SC';
+  font-size: 14px;
+  color: #333;
+}
+
+div, img, span, a {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+.container {
+  height: 100%;
+  background: #f4f4f4;
+}
+
+.address-box {
+  width: 100%;
+  height: 83px;
+  background: url('http://yanxuan.nosdn.127.net/hxm/yanxuan-wap/p/20161201/style/img/icon-normal/address-bg-bd30f2bfeb.png') 0 0 repeat-x;
+  background-size: 31px 5px;
+  margin-bottom: 10px;
+  padding-top: 5px;
+}
+
+.address-item {
+  display: flex;
+  height: 77px;
+  background: #fff;
+  padding: 20px 0 20px 15px;
+}
+
+.address-item.address-empty {
+  line-height: 37px;
+  text-align: center;
+}
+
+.address-box .l {
+  width: 77px;
+  height: 100%;
+}
+
+.address-box .l .name {
+  margin-left: 3px;
+  margin-top: -3px;
+  display: block;
+  width: 77px;
+  height: 21px;
+  line-height: 21px;
+  font-size: 15px;
+  color: #333;
+  margin-bottom: 2px;
+}
+
+.address-box .l .default {
+  margin-left: 3px;
+  display: block;
+  width: 31px;
+  height: 16px;
+  border-radius: 2px;
+  border: 1px solid #b4282d;
+  font-size: 10px;
+  text-align: center;
+  line-height: 14px;
+  color: #b4282d;
+}
+
+.address-box .m {
+  flex: 1;
+  height: 36px;
+  color: #999;
+}
+
+.address-box .mobile {
+  display: block;
+  height: 14px;
+  line-height: 14px;
+  margin-bottom: 3px;
+  font-size: 15px;
+  color: #333;
+}
+
+.address-box .address {
+  display: block;
+  height: 18px;
+  line-height: 18px;
+  font-size: 12px;
+  color: #666;
+  position: static;
+}
+
+.address-box .r {
+  width: 38px;
+  height: 38px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.address-box .r img {
+  width: 26px;
+  height: 26px;
+}
+
+.coupon-box {
+  width: 100%;
+  height: auto;
+  overflow: hidden;
+  background: #fff;
+}
+
+.coupon-box .coupon-item {
+  width: 100%;
+  height: 54px;
+  overflow: hidden;
+  background: #fff;
+  display: flex;
+  padding-left: 15px;
+}
+
+.coupon-box .l {
+  flex: 1;
+  height: 21px;
+  line-height: 21px;
+  padding-top: 17px;
+}
+
+.coupon-box .l .name {
+  float: left;
+  font-size: 15px;
+  color: #666;
+}
+
+.coupon-box .l .txt {
+  float: right;
+  font-size: 15px;
+  color: #666;
+}
+
+.coupon-box .r {
+  margin-top: 7px;
+  width: 38px;
+  height: 38px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.coupon-box .r img {
+  width: 26px;
+  height: 26px;
+}
+
+.order-box {
+  margin-top: 10px;
+  width: 100%;
+  height: auto;
+  overflow: hidden;
+  background: #fff;
+}
+
+.order-box .order-item {
+  height: 52px;
+  overflow: hidden;
+  background: #fff;
+  display: flex;
+  margin-left: 15px;
+  padding-right: 15px;
+  padding-top: 13px;
+  border-bottom: 1px solid #d9d9d9;
+}
+
+.order-box .order-item .l {
+  float: left;
+  height: 26px;
+  width: 50%;
+  line-height: 26px;
+  overflow: hidden;
+}
+
+.order-box .order-item .r {
+  float: right;
+  text-align: right;
+  width: 50%;
+  height: 26px;
+  line-height: 26px;
+  overflow: hidden;
+}
+
+.order-box .order-item.no-border {
+  border-bottom: none;
+}
+
+.goods-items {
+  margin-top: 10px;
+  width: 100%;
+  height: auto;
+  overflow: hidden;
+  background: #fff;
+  padding-left: 15px;
+  margin-bottom: 60px;
+}
+
+.goods-items .item {
+  height: 96px;
+  padding-right: 15px;
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+}
+
+.goods-items .item.no-border {
+  border-bottom: none;
+}
+
+.goods-items .item:last-child {
+  border-bottom: none;
+}
+
+.goods-items .img {
+  height: 72px;
+  width: 72px;
+  background-color: #f4f4f4;
+  margin-right: 10px;
+}
+
+.goods-items .img img {
+  height: 72px;
+  width: 72px;
+}
+
+.goods-items .info {
+  flex: 1;
+  height: 72px;
+  padding-top: 2px;
+}
+
+.goods-items .t {
+  height: 16px;
+  line-height: 16px;
+  margin-bottom: 5px;
+  overflow: hidden;
+  font-size: 15px;
+  color: #333;
+}
+
+.goods-items .t .name {
+  display: block;
+  float: left;
+}
+
+.goods-items .t .number {
+  display: block;
+  float: right;
+  text-align: right;
+}
+
+.goods-items .m {
+  height: 14px;
+  overflow: hidden;
+  line-height: 14px;
+  margin-bottom: 12px;
+  font-size: 12px;
+  color: #666;
+}
+
+.goods-items .b {
+  height: 20px;
+  overflow: hidden;
+  line-height: 20px;
+  font-size: 15px;
+  color: #333;
+}
+
+.order-total {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  height: 50px;
+  width: 100%;
+  display: flex;
+}
+
+.order-total .l {
+  flex: 1;
+  height: 50px;
+  line-height: 50px;
+  color: #b4282d;
+  background: #fff;
+  font-size: 16px;
+  padding-left: 15px;
+  border-top: 0px solid rgba(0, 0, 0, 0.2);
+  border-bottom: 0px solid rgba(0, 0, 0, 0.2);
+}
+
+.order-total .r {
+  width: 116px;
+  height: 50px;
+  background: #b4282d;
+  border: 1px solid #b4282d;
+  line-height: 50px;
+  text-align: center;
+  color: #fff;
+  font-size: 15px;
+}
+.ddzt >>> .cube-checkbox[data-pos="right"] .cube-checkbox-ui{
+  margin-right: 15px;
+}

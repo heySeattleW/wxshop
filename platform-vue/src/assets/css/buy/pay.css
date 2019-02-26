@@ -1,0 +1,137 @@
+page {
+  min-height: 100%;
+  width: 100%;
+  background: #f4f4f4;
+}
+
+.container {
+  padding-top: 10px;
+}
+
+.total {
+  height: 52px;
+  background: #fff;
+  width: 100%;
+  line-height: 52px;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+.total .label {
+  float: left;
+}
+
+.total .txt {
+  float: right;
+}
+
+.pay-list {
+  margin-top: 15px;
+  height: auto;
+  width: 100%;
+  overflow: hidden;
+}
+
+.pay-list .h {
+  width: 100%;
+  height: 12px;
+  /*line-height: 12px;*/
+  margin-left: 15px;
+  margin-bottom: 15px;
+}
+
+.pay-list .item {
+  height: 54px;
+  padding-left: 15px;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #f4f4f4;
+}
+
+.pay-list .checkbox {
+  background: url(http://yanxuan.nosdn.127.net/hxm/yanxuan-wap/p/20161201/style/img/sprites/checkbox-sed825af9d3-a6b8540d42.png) 0 -224px no-repeat;
+  background-size: 19px 243px;
+  width: 20px;
+  height: 20px;
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 15px;
+}
+
+.pay-list .checkbox.checked {
+  background: url(http://yanxuan.nosdn.127.net/hxm/yanxuan-wap/p/20161201/style/img/sprites/checkbox-sed825af9d3-a6b8540d42.png) 0 -96px no-repeat;
+  background-size: 19px 243px;
+}
+
+.pay-list .icon-alipay {
+  display: inline-block;
+  vertical-align: middle;
+  background-image: url(http://yanxuan.nosdn.127.net/hxm/yanxuan-wap/p/20161201/style/img/sprites/payMethod-s3c1faebee4-d754da9c65.png);
+  background-repeat: no-repeat;
+  background-size: 28px 94px;
+  margin-right: 5px;
+  width: 28px;
+  height: 28px;
+}
+
+.pay-list .icon-net {
+  display: inline-block;
+  vertical-align: middle;
+  background: url(http://yanxuan.nosdn.127.net/hxm/yanxuan-wap/p/20161201/style/img/sprites/payMethod-s3c1faebee4-d754da9c65.png) 0 -33px no-repeat;
+  background-size: 28px 94px;
+  margin-right: 5px;
+  width: 28px;
+  height: 28px;
+}
+
+.pay-list .icon {
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 5px;
+  width: 28px;
+  height: 28px;
+}
+
+.pay-list .name {
+  display: inline-block;
+  vertical-align: middle;
+  height: 28px;
+  line-height: 28px;
+}
+
+.pay-btn {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  height: 50px;
+  width: 100%;
+  text-align: center;
+  line-height: 50px;
+  background: #b4282d;
+  color: #fff;
+  font-size: 15px;
+}
+
+.tips {
+  height: 20px;
+  width: 100%;
+  font-size: 12px;
+  color: #999;
+  line-height: 20px;
+  padding-left: 15px;
+  padding-right: 15px;
+  margin-top: 10px;
+}
+
+div, span {
+  font-family: PingFangSC-Light, helvetica, 'Heiti SC';
+  font-size: 14px;
+  color: #333;
+}
+
+div, img, span, a {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}

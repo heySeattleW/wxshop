@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bjdvt.platform.mapper.ComponentMapper" >
+
+    <resultMap id="BaseResultMap" type="com.bjdvt.platform.model.Component" >
+        <id column="id" property="id" jdbcType="INTEGER" />
+        <result column="sectionId" property="sectionId" jdbcType="INTEGER" />
+        <result column="component" property="component" jdbcType="INTEGER" />
+        <result column="component_name" property="componentName" jdbcType="VARCHAR" />
+        <result column="page_id" property="pageId" jdbcType="VARCHAR" />
+    </resultMap>
+
+    <sql id="Example_Where_Clause" >
+        <where >
+            <foreach collection="oredCriteria" item="criteria" separator="or" >
+                <if test="criteria.valid" >
+                    <trim prefix="(" suffix=")" prefixOverrides="and" >
+                        <foreach collection="criteria.criteria" item="criterion" >
+                            <choose >
+                                <when test="criterion.noValue" >
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue" >
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue" >
+                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue" >
+                                    and ${criterion.condition}
+                                    <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
+            </foreach>
+        </where>
+    </sql>
+
+    <sql id="Update_By_Example_Where_Clause" >
+        <where >
+            <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+                <if test="criteria.valid" >
+                    <trim prefix="(" suffix=")" prefixOverrides="and" >
+                        <foreach collection="criteria.criteria" item="criterion" >
+                            <choose >
+                                <when test="criterion.noValue" >
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue" >
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue" >
+                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue" >
+                                    and ${criterion.condition}
+                                    <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
+            </foreach>
+        </where>
+    </sql>
+
+    <sql id="Base_Column_List" >
+        id, sectionId, component, component_name, page_id
+    </sql>
+
+    <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.bjdvt.platform.model.ComponentExample" >
+        select
+        <if test="distinct" >
+            distinct
+        </if>
+        <include refid="Base_Column_List" />
+        from component
+        <if test="_parameter != null" >
+            <include refid="Example_Where_Clause" />
+        </if>
+        <if test="orderByClause != null" >
+            order by ${orderByClause}
+        </if>
+    </select>
+
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+        select 
+        <include refid="Base_Column_List" />
+        from component
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+        delete from component
+        where id = #{id,jdbcType=INTEGER}
+    </delete>
+
+    <delete id="deleteByExample" parameterType="com.bjdvt.platform.model.ComponentExample" >
+        delete from component
+        <if test="_parameter != null" >
+            <include refid="Example_Where_Clause" />
+        </if>
+    </delete>
+
+    <insert id="insert" parameterType="com.bjdvt.platform.model.Component"   useGeneratedKeys="true" keyProperty="id">
+        insert into component (id, sectionId, component, 
+            component_name, page_id)
+        values (#{id,jdbcType=INTEGER}, #{sectionId,jdbcType=INTEGER}, #{component,jdbcType=INTEGER}, 
+            #{componentName,jdbcType=VARCHAR}, #{pageId,jdbcType=VARCHAR})
+    </insert>
+
+    <insert id="insertSelective" parameterType="com.bjdvt.platform.model.Component"  >
+        insert into component
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="id != null" >
+                id,
+            </if>
+            <if test="sectionId != null" >
+                sectionId,
+            </if>
+            <if test="component != null" >
+                component,
+            </if>
+            <if test="componentName != null" >
+                component_name,
+            </if>
+            <if test="pageId != null" >
+                page_id,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="id != null" >
+                #{id,jdbcType=INTEGER},
+            </if>
+            <if test="sectionId != null" >
+                #{sectionId,jdbcType=INTEGER},
+            </if>
+            <if test="component != null" >
+                #{component,jdbcType=INTEGER},
+            </if>
+            <if test="componentName != null" >
+                #{componentName,jdbcType=VARCHAR},
+            </if>
+            <if test="pageId != null" >
+                #{pageId,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+
+    <select id="countByExample" parameterType="com.bjdvt.platform.model.ComponentExample" resultType="java.lang.Integer" >
+        select count(*) from component
+        <if test="_parameter != null" >
+            <include refid="Example_Where_Clause" />
+        </if>
+    </select>
+
+    <update id="updateByExampleSelective" parameterType="map" >
+        update component
+        <set >
+            <if test="record.id != null" >
+                id = #{record.id,jdbcType=INTEGER},
+            </if>
+            <if test="record.sectionId != null" >
+                sectionId = #{record.sectionId,jdbcType=INTEGER},
+            </if>
+            <if test="record.component != null" >
+                component = #{record.component,jdbcType=INTEGER},
+            </if>
+            <if test="record.componentName != null" >
+                component_name = #{record.componentName,jdbcType=VARCHAR},
+            </if>
+            <if test="record.pageId != null" >
+                page_id = #{record.pageId,jdbcType=VARCHAR},
+            </if>
+        </set>
+        <if test="_parameter != null" >
+            <include refid="Update_By_Example_Where_Clause" />
+        </if>
+    </update>
+
+    <update id="updateByExample" parameterType="map" >
+        update component
+        set id = #{record.id,jdbcType=INTEGER},
+            sectionId = #{record.sectionId,jdbcType=INTEGER},
+            component = #{record.component,jdbcType=INTEGER},
+            component_name = #{record.componentName,jdbcType=VARCHAR},
+            page_id = #{record.pageId,jdbcType=VARCHAR}
+        <if test="_parameter != null" >
+            <include refid="Update_By_Example_Where_Clause" />
+        </if>
+    </update>
+
+    <update id="updateByPrimaryKeySelective" parameterType="com.bjdvt.platform.model.Component" >
+        update component
+        <set >
+            <if test="sectionId != null" >
+                sectionId = #{sectionId,jdbcType=INTEGER},
+            </if>
+            <if test="component != null" >
+                component = #{component,jdbcType=INTEGER},
+            </if>
+            <if test="componentName != null" >
+                component_name = #{componentName,jdbcType=VARCHAR},
+            </if>
+            <if test="pageId != null" >
+                page_id = #{pageId,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+
+    <update id="updateByPrimaryKey" parameterType="com.bjdvt.platform.model.Component" >
+        update component
+        set sectionId = #{sectionId,jdbcType=INTEGER},
+            component = #{component,jdbcType=INTEGER},
+            component_name = #{componentName,jdbcType=VARCHAR},
+            page_id = #{pageId,jdbcType=VARCHAR}
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+</mapper>

@@ -1,0 +1,83 @@
+/* CSS Document */
+
+
+.phone-cp{
+  background-color: #000;
+  color: #fff;
+}
+.phone-cp:not(:last-child){
+  margin-bottom: 15px;
+}
+.phone-cp > div.con{
+  /*height: 200px;*/
+  margin-bottom: 5px;
+  position: relative;
+}
+
+.phone-cp > div.con>img{
+  width: 100%;display: block;
+}
+
+
+.phone-cp > div.con .video-contr{
+  width: 100px;
+  text-align: center;
+  font-size: 20px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-top: -30px;
+  margin-left: -50px;
+}
+.phone-cp > div.con .video-contr img{
+  display: block;
+  margin: auto;
+  margin-bottom: 10px;
+}
+
+.phone-cp > div.list{
+  display: flex;
+  align-items: center;
+  padding: 0 10px;
+  margin-bottom: 10px;
+}
+.phone-cp > div.list span{
+  flex: 1;
+}
+.phone-cp > div.list img{
+  flex: 1;
+  margin-left: 15px;
+  width: 25px;/*这里设置的25 可能具体值不是25*/
+}
+.phone-cp > div.list [type="range"]{
+  flex: 6;
+  margin: 0 10px;
+}
+.phone-cp > p{
+  font-size: 14px;
+  padding:10px;
+}
+input[type="range"],span{
+  vertical-align: middle;
+}
+
+input[type="range"] {
+  -webkit-appearance: none; /*去除默认样式*/
+  background-color: #f0f0f0;
+  width: 50%;
+  -webkit-appearance: none;
+  height:2px;
+  padding: 0;
+  border: none;
+  /*input的长度为80%，margin-left的长度为10%*/
+}
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;/*去除默认样式*/
+  cursor: default;
+  top: 0;
+  height: 20px;
+  width: 20px;
+  transform: translateY(0px);
+  background: #eee;
+  border-radius: 15px;
+}

@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.platform.dao.EvaluateMapper">
+
+    <resultMap type="com.platform.entity.EvaluateEntity" id="BaseResultMap">
+        <result property="id" column="id"/>
+        <result property="name" column="name"/>
+        <result property="picUrl" column="pic_url"/>
+        <result property="videoUrl" column="video_url"/>
+    </resultMap>
+
+    <sql id="Example_Where_Clause" >
+        <where >
+            <foreach collection="oredCriteria" item="criteria" separator="or" >
+                <if test="criteria.valid" >
+                    <trim prefix="(" suffix=")" prefixOverrides="and" >
+                        <foreach collection="criteria.criteria" item="criterion" >
+                            <choose >
+                                <when test="criterion.noValue" >
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue" >
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue" >
+                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue" >
+                                    and ${criterion.condition}
+                                    <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
+            </foreach>
+        </where>
+    </sql>
+    <sql id="Update_By_Example_Where_Clause" >
+        <where >
+            <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+                <if test="criteria.valid" >
+                    <trim prefix="(" suffix=")" prefixOverrides="and" >
+                        <foreach collection="criteria.criteria" item="criterion" >
+                            <choose >
+                                <when test="criterion.noValue" >
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue" >
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue" >
+                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue" >
+                                    and ${criterion.condition}
+                                    <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
+            </foreach>
+        </where>
+    </sql>
+    <sql id="Base_Column_List" >
+	    `id`,
+	    `name`,
+	    `pic_url`,
+	    `video_url`
+  	</sql>
+
+
+    <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.platform.entity.example.EvaluateExample" >
+        select
+        <if test="distinct" >
+            distinct
+        </if>
+        <include refid="Base_Column_List" />
+        from nideshop_evaluate
+        <if test="_parameter != null" >
+            <include refid="Example_Where_Clause" />
+        </if>
+        <if test="orderByClause != null" >
+            order by ${orderByClause}
+        </if>
+        <if test="pageStart!=null and pageStart gt -1" >
+            limit ${pageStart},${pageSize}
+        </if>
+    </select>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+        select
+        <include refid="Base_Column_List" />
+        from nideshop_evaluate
+        where id = #{id,jdbcType=BIGINT}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+        delete from nideshop_evaluate
+        where id = #{id,jdbcType=BIGINT}
+    </delete>
+    <delete id="deleteByExample" parameterType="com.platform.entity.example.EvaluateExample" >
+        delete from nideshop_evaluate
+        <if test="_parameter != null" >
+            <include refid="Example_Where_Clause" />
+        </if>
+    </delete>
+    <delete id="deleteBatch">
+        delete from nideshop_evaluate where id in
+<foreach item="id" collection="array" open="(" separator="," close=")">
+          #{id}
+</foreach>
+    </delete>
+    <insert id="insert" parameterType="com.platform.entity.EvaluateEntity" useGeneratedKeys="true" keyProperty="id">
+		insert into nideshop_evaluate(
+          `name`,
+          `pic_url`,
+          `video_url`        )
+		values(
+          #{name},
+          #{picUrl},
+          #{videoUrl}         )
+	</insert>
+
+
+    <insert id="insertSelective" parameterType="com.platform.entity.EvaluateEntity" useGeneratedKeys="true" keyProperty="id">
+        insert into nideshop_evaluate
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+          <if test="name != null">
+            `name`,
+          </if>
+          <if test="picUrl != null">
+            `pic_url`,
+          </if>
+          <if test="videoUrl != null">
+            `video_url`
+          </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="name != null">
+              #{name},
+            </if>
+            <if test="picUrl != null">
+              #{picUrl},
+            </if>
+            <if test="videoUrl != null">
+              #{videoUrl}
+            </if>
+        </trim>
+    </insert>
+
+    <select id="countByExample" parameterType="com.platform.entity.example.EvaluateExample" resultType="java.lang.Integer" >
+        select count(*) from nideshop_evaluate
+        <if test="_parameter != null" >
+            <include refid="Example_Where_Clause" />
+        </if>
+    </select>
+    <update id="updateByExampleSelective" parameterType="map" >
+        update nideshop_evaluate
+        <set>
+          <if test="name != null">
+              `name` = #{name},
+          </if>
+          <if test="picUrl != null">
+              `pic_url` = #{picUrl},
+          </if>
+          <if test="videoUrl != null">
+              `video_url` = #{videoUrl}
+          </if>
+        </set>
+        <if test="_parameter != null" >
+            <include refid="Update_By_Example_Where_Clause" />
+        </if>
+    </update>
+    <update id="updateByExample" parameterType="map" >
+        update nideshop_evaluate
+        <set>
+          `name` = #{name},
+          `pic_url` = #{picUrl},
+          `video_url` = #{videoUrl}
+        </set>
+        <if test="_parameter != null" >
+            <include refid="Update_By_Example_Where_Clause" />
+        </if>
+    </update>
+
+    <update id="updateByPrimaryKeySelective" parameterType="com.platform.entity.EvaluateEntity">
+        update nideshop_evaluate
+        <set>
+          <if test="name != null">
+            `name` = #{name},
+          </if>
+          <if test="picUrl != null">
+            `pic_url` = #{picUrl},
+          </if>
+          <if test="videoUrl != null">
+            `video_url` = #{videoUrl}
+          </if>
+        </set>
+        where id = #{id}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.platform.entity.EvaluateEntity" >
+        update nideshop_evaluate
+        <set>
+            `name` = #{name},
+            `pic_url` = #{picUrl},
+            `video_url` = #{videoUrl}
+        </set>
+        where id = #{id,jdbcType=BIGINT}
+  </update>
+
+
+    <select id="queryList" resultType="com.platform.entity.EvaluateEntity">
+        select
+          `id`,
+          `name`,
+          `pic_url`,
+          `video_url`
+        from nideshop_evaluate
+        WHERE 1=1
+        <if test="name != null and name.trim() != ''">
+            AND name LIKE concat('%',#{name},'%')
+        </if>
+        <choose>
+            <when test="sidx != null and sidx.trim() != ''">
+                order by ${sidx} ${order}
+            </when>
+            <otherwise>
+                order by id desc
+            </otherwise>
+        </choose>
+        <if test="offset != null and limit != null">
+            limit #{offset}, #{limit}
+        </if>
+    </select>
+
+    <select id="queryTotal" resultType="int">
+        select count(*) from nideshop_evaluate
+        WHERE 1=1
+        <if test="name != null and name.trim() != ''">
+            AND name LIKE concat('%',#{name},'%')
+        </if>
+    </select>
+</mapper>

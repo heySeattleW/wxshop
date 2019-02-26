@@ -1,0 +1,264 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.platform.dao.FlashgoodsDao">
+
+    <resultMap type="com.platform.entity.FlashgoodsEntity" id="BaseResultMap">
+        <result property="id" column="id"/>
+        <result property="goodsId" column="goods_id"/>
+        <result property="startTime" column="start_time"/>
+        <result property="endTime" column="end_time"/>
+        <result property="rebate" column="rebate"/>
+        <result property="appId" column="app_id"/>
+    </resultMap>
+
+    <sql id="Example_Where_Clause" >
+        <where >
+            <foreach collection="oredCriteria" item="criteria" separator="or" >
+                <if test="criteria.valid" >
+                    <trim prefix="(" suffix=")" prefixOverrides="and" >
+                        <foreach collection="criteria.criteria" item="criterion" >
+                            <choose >
+                                <when test="criterion.noValue" >
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue" >
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue" >
+                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue" >
+                                    and ${criterion.condition}
+                                    <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
+            </foreach>
+        </where>
+    </sql>
+    <sql id="Update_By_Example_Where_Clause" >
+        <where >
+            <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+                <if test="criteria.valid" >
+                    <trim prefix="(" suffix=")" prefixOverrides="and" >
+                        <foreach collection="criteria.criteria" item="criterion" >
+                            <choose >
+                                <when test="criterion.noValue" >
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue" >
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue" >
+                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue" >
+                                    and ${criterion.condition}
+                                    <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
+            </foreach>
+        </where>
+    </sql>
+    <sql id="Base_Column_List" >
+	    `id`,
+	    `goods_id`,
+	    `start_time`,
+	    `end_time`,
+	    `rebate`,
+	    `app_id`
+  	</sql>
+
+
+  
+      <select id="queryObject" resultType="com.platform.entity.FlashgoodsEntity">
+        select
+        <if test="distinct" >
+            distinct
+        </if>
+        <include refid="Base_Column_List" />
+        from nideshop_flashgoods
+        where msg_id = #{id}
+    </select>
+   
+    <delete id="delete" parameterType="java.lang.Long" >
+        delete from nideshop_flashgoods
+        where id = #{id,jdbcType=BIGINT}
+    </delete>
+   
+    <delete id="deleteBatch">
+        delete from nideshop_flashgoods where id in
+<foreach item="id" collection="array" open="(" separator="," close=")">
+          #{id}
+</foreach>
+    </delete>
+    <insert id="save" parameterType="com.platform.entity.FlashgoodsEntity" useGeneratedKeys="true" keyProperty="id">
+		insert into nideshop_flashgoods(
+          `goods_id`,
+          `start_time`,
+          `end_time`,
+          `rebate`,
+          `app_id`        )
+		values(
+          #{goodsId},
+          #{startTime},
+          #{endTime},
+          #{rebate},
+          #{appId}         )
+	</insert>
+
+
+    <insert id="insertSelective" parameterType="com.platform.entity.FlashgoodsEntity" useGeneratedKeys="true" keyProperty="id">
+        insert into nideshop_flashgoods
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+          <if test="goodsId != null">
+            `goods_id`,
+          </if>
+          <if test="startTime != null">
+            `start_time`,
+          </if>
+          <if test="endTime != null">
+            `end_time`,
+          </if>
+          <if test="rebate != null">
+            `rebate`,
+          </if>
+          <if test="appId != null">
+            `app_id`
+          </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="goodsId != null">
+              #{goodsId},
+            </if>
+            <if test="startTime != null">
+              #{startTime},
+            </if>
+            <if test="endTime != null">
+              #{endTime},
+            </if>
+            <if test="rebate != null">
+              #{rebate},
+            </if>
+            <if test="appId != null">
+              #{appId}
+            </if>
+        </trim>
+    </insert>
+
+   
+    <update id="updateByExampleSelective" parameterType="map" >
+        update nideshop_flashgoods
+        <set>
+          <if test="goodsId != null">
+              `goods_id` = #{goodsId},
+          </if>
+          <if test="startTime != null">
+              `start_time` = #{startTime},
+          </if>
+          <if test="endTime != null">
+              `end_time` = #{endTime},
+          </if>
+          <if test="rebate != null">
+              `rebate` = #{rebate},
+          </if>
+          <if test="appId != null">
+              `app_id` = #{appId}
+          </if>
+        </set>
+        <if test="_parameter != null" >
+            <include refid="Update_By_Example_Where_Clause" />
+        </if>
+    </update>
+    <update id="updateByExample" parameterType="map" >
+        update nideshop_flashgoods
+        <set>
+          `goods_id` = #{goodsId},
+          `start_time` = #{startTime},
+          `end_time` = #{endTime},
+          `rebate` = #{rebate},
+          `app_id` = #{appId}
+        </set>
+        <if test="_parameter != null" >
+            <include refid="Update_By_Example_Where_Clause" />
+        </if>
+    </update>
+
+    <update id="updateByPrimaryKeySelective" parameterType="com.platform.entity.FlashgoodsEntity">
+        update nideshop_flashgoods
+        <set>
+          <if test="goodsId != null">
+            `goods_id` = #{goodsId},
+          </if>
+          <if test="startTime != null">
+            `start_time` = #{startTime},
+          </if>
+          <if test="endTime != null">
+            `end_time` = #{endTime},
+          </if>
+          <if test="rebate != null">
+            `rebate` = #{rebate},
+          </if>
+          <if test="appId != null">
+            `app_id` = #{appId}
+          </if>
+        </set>
+        where id = #{id}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.platform.entity.FlashgoodsEntity" >
+        update nideshop_flashgoods
+        <set>
+            `goods_id` = #{goodsId},
+            `start_time` = #{startTime},
+            `end_time` = #{endTime},
+            `rebate` = #{rebate},
+            `app_id` = #{appId}
+        </set>
+        where id = #{id,jdbcType=BIGINT}
+  </update>
+
+
+    <select id="queryList" resultType="com.platform.entity.FlashgoodsEntity">
+        select
+          `id`,
+          `goods_id`,
+          `start_time`,
+          `end_time`,
+          `rebate`,
+          `app_id`
+        from nideshop_flashgoods
+        WHERE 1=1
+        <if test="name != null and name.trim() != ''">
+            AND name LIKE concat('%',#{name},'%')
+        </if>
+        <choose>
+            <when test="sidx != null and sidx.trim() != ''">
+                order by ${sidx} ${order}
+            </when>
+            <otherwise>
+                order by id desc
+            </otherwise>
+        </choose>
+        <if test="offset != null and limit != null">
+            limit #{offset}, #{limit}
+        </if>
+    </select>
+
+    <select id="queryTotal" resultType="int">
+        select count(*) from nideshop_flashgoods
+        WHERE 1=1
+        <if test="name != null and name.trim() != ''">
+            AND name LIKE concat('%',#{name},'%')
+        </if>
+    </select>
+</mapper>

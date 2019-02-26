@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ehcache xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://ehcache.org/ehcache.xsd" updateCheck="false">
+
+    <!--超过大小后持久化磁盘位置-->
+    <diskStore path="./ehcache"/>
+
+    <!-- default cache -->
+    <defaultCache
+            maxElementsInMemory="1000"
+            eternal="false"
+            timeToIdleSeconds="120"
+            timeToLiveSeconds="120"
+            overflowToDisk="false"/>
+
+    <!--自定义缓存配置-->
+    <cache name="token"
+           maxElementsInMemory="1000">
+    </cache>
+
+ 	<cache name="user"
+           maxElementsInMemory="1000">
+    </cache>
+    <cache name="product"
+           maxElementsInMemory="1000">
+    </cache>
+    <cache name="official"
+           maxElementsInMemory="1000">
+    </cache>
+     <cache name="image"
+           maxElementsInMemory="1000">
+    </cache>
+</ehcache>

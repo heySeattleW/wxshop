@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.platform.dao.ApiAfterSalesMapper">
+
+    <resultMap type="com.platform.entity.AfterSalesVo" id="BaseResultMap">
+        <result property="id" column="id"/>
+        <result property="productId" column="product_id"/>
+        <result property="buyTime" column="buy_time"/>
+        <result property="goodsSpecifitionNames" column="goods_specifition_names"/>
+        <result property="goodsId" column="goods_id"/>
+         <result property="goodsName" column="goods_name"/>
+        <result property="orderId" column="order_id"/>
+        <result property="productSn" column="product_sn"/>
+        <result property="orderSn" column="order_sn"/>
+          <result property="userId" column="user_id"/>
+        <result property="repairEndTime" column="repair_end_time"/>
+    </resultMap>
+
+   
+    <sql id="Base_Column_List" >
+	    `id`,
+	    `product_id`,
+	    `buy_time`,
+	    `goods_specifition_names`,
+	    `goods_id`,
+	    `order_id`,
+	    `product_sn`,
+	    `order_sn`,
+	    `goods_name`,
+	    `user_id`,
+	    `repair_end_time`
+  	</sql>
+
+
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+        select
+        <include refid="Base_Column_List" />
+        from nideshop_aftersales
+        where id = #{id,jdbcType=BIGINT}
+    </select>
+   
+    <insert id="insert" parameterType="com.platform.entity.AfterSalesVo" useGeneratedKeys="true" keyProperty="id">
+		insert into nideshop_aftersales(
+          `id`,
+          `product_id`,
+          `buy_time`,
+          `goods_specifition_names`,
+          `goods_id`,
+          `order_id`,
+          `product_sn`,
+          `order_sn`,
+          `user_id`,
+           `goods_name`,
+          `repair_end_time`        )
+		values(
+          #{id},
+          #{productId},
+          #{buyTime},
+          #{goodsSpecifitionNames},
+          #{goodsId},
+          #{orderId},
+          #{productSn},
+          #{orderSn},
+          #{userId},
+           #{goodsName},
+          #{repairEndTime}         )
+	</insert>
+
+
+    
+    
+    <update id="updateByPrimaryKeySelective" parameterType="com.platform.entity.AfterSalesVo">
+        update nideshop_aftersales
+        <set>
+          <if test="productId != null">
+            `product_id` = #{productId},
+          </if>
+          <if test="buyTime != null">
+            `buy_time` = #{buyTime},
+          </if>
+          <if test="goodsSpecifitionNames != null">
+            `goods_specifition_names` = #{goodsSpecifitionNames},
+          </if>
+          <if test="goodsId != null">
+            `goods_id` = #{goodsId},
+          </if>
+          <if test="orderId != null">
+            `order_id` = #{orderId},
+          </if>
+          <if test="productSn != null">
+            `product_sn` = #{productSn},
+          </if>
+          <if test="orderSn != null">
+            `order_sn` = #{orderSn},
+          </if>
+          <if test="repairEndTime != null">
+            `repair_end_time` = #{repairEndTime}
+          </if>
+        </set>
+        where id = #{id}
+    </update>
+  
+ <select id="queryObject" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+        select
+        <include refid="Base_Column_List" />
+        from nideshop_aftersales
+        where id = #{id,jdbcType=BIGINT}
+    </select>
+
+    <select id="queryList" resultType="com.platform.entity.AfterSalesVo">
+        select
+          `id`,
+          `product_id`,
+          `buy_time`,
+          `goods_specifition_names`,
+           `goods_id`,
+          `order_id`,
+          `product_sn`,
+          `order_sn`,
+          `goods_name`,
+           `user_id`,
+          `repair_end_time`
+        from nideshop_aftersales
+        WHERE 1=1
+        <if test="userId != null ">
+            And user_id =${userId}
+        </if>
+         <if test="name != null and name.trim() != ''">
+            AND name LIKE concat('%',#{name},'%')
+        </if>
+        <choose>
+            <when test="sidx != null and sidx.trim() != ''">
+                order by ${sidx} ${order}
+            </when>
+            <otherwise>
+                order by id desc
+            </otherwise>
+        </choose>
+        <if test="offset != null and limit != null">
+            limit #{offset}, #{limit}
+        </if>
+    </select>
+
+    <select id="queryTotal" resultType="int">
+        select count(*) from nideshop_aftersales
+        WHERE 1=1
+         <if test="userId != null ">
+            And user_id =${userId}
+        </if>
+        <if test="name != null and name.trim() != ''">
+            AND name LIKE concat('%',#{name},'%')
+        </if>
+    </select>
+</mapper>

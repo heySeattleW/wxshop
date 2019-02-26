@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bjdvt.platform.mapper.TabbarMapper" >
+
+    <resultMap id="BaseResultMap" type="com.bjdvt.platform.model.Tabbar" >
+        <id column="id" property="id" jdbcType="INTEGER" />
+        <result column="color" property="color" jdbcType="VARCHAR" />
+        <result column="selected_color" property="selectedColor" jdbcType="VARCHAR" />
+        <result column="backgroun_color" property="backgrounColor" jdbcType="VARCHAR" />
+        <result column="border_style" property="borderStyle" jdbcType="VARCHAR" />
+        <result column="app_id" property="appId" jdbcType="VARCHAR" />
+    </resultMap>
+
+    <sql id="Example_Where_Clause" >
+        <where >
+            <foreach collection="oredCriteria" item="criteria" separator="or" >
+                <if test="criteria.valid" >
+                    <trim prefix="(" suffix=")" prefixOverrides="and" >
+                        <foreach collection="criteria.criteria" item="criterion" >
+                            <choose >
+                                <when test="criterion.noValue" >
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue" >
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue" >
+                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue" >
+                                    and ${criterion.condition}
+                                    <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
+            </foreach>
+        </where>
+    </sql>
+
+    <sql id="Update_By_Example_Where_Clause" >
+        <where >
+            <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+                <if test="criteria.valid" >
+                    <trim prefix="(" suffix=")" prefixOverrides="and" >
+                        <foreach collection="criteria.criteria" item="criterion" >
+                            <choose >
+                                <when test="criterion.noValue" >
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue" >
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue" >
+                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue" >
+                                    and ${criterion.condition}
+                                    <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
+            </foreach>
+        </where>
+    </sql>
+
+    <sql id="Base_Column_List" >
+        id, color, selected_color, backgroun_color, border_style, app_id
+    </sql>
+
+    <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.bjdvt.platform.model.TabbarExample" >
+        select
+        <if test="distinct" >
+            distinct
+        </if>
+        <include refid="Base_Column_List" />
+        from tabbar
+        <if test="_parameter != null" >
+            <include refid="Example_Where_Clause" />
+        </if>
+        <if test="orderByClause != null" >
+            order by ${orderByClause}
+        </if>
+    </select>
+
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+        select 
+        <include refid="Base_Column_List" />
+        from tabbar
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+        delete from tabbar
+        where id = #{id,jdbcType=INTEGER}
+    </delete>
+
+    <delete id="deleteByExample" parameterType="com.bjdvt.platform.model.TabbarExample" >
+        delete from tabbar
+        <if test="_parameter != null" >
+            <include refid="Example_Where_Clause" />
+        </if>
+    </delete>
+
+
+    <insert id="insert" parameterType="com.bjdvt.platform.model.Tabbar" useGeneratedKeys="true" keyProperty="id" >
+        insert into tabbar (id, color, selected_color, 
+            backgroun_color, border_style, app_id
+            )
+        values (#{id,jdbcType=INTEGER}, #{color,jdbcType=VARCHAR}, #{selectedColor,jdbcType=VARCHAR}, 
+            #{backgrounColor,jdbcType=VARCHAR}, #{borderStyle,jdbcType=VARCHAR}, #{appId,jdbcType=VARCHAR}
+            )
+    </insert>
+
+    <insert id="insertSelective" parameterType="com.bjdvt.platform.model.Tabbar" >
+        insert into tabbar
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="id != null" >
+                id,
+            </if>
+            <if test="color != null" >
+                color,
+            </if>
+            <if test="selectedColor != null" >
+                selected_color,
+            </if>
+            <if test="backgrounColor != null" >
+                backgroun_color,
+            </if>
+            <if test="borderStyle != null" >
+                border_style,
+            </if>
+            <if test="appId != null" >
+                app_id,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="id != null" >
+                #{id,jdbcType=INTEGER},
+            </if>
+            <if test="color != null" >
+                #{color,jdbcType=VARCHAR},
+            </if>
+            <if test="selectedColor != null" >
+                #{selectedColor,jdbcType=VARCHAR},
+            </if>
+            <if test="backgrounColor != null" >
+                #{backgrounColor,jdbcType=VARCHAR},
+            </if>
+            <if test="borderStyle != null" >
+                #{borderStyle,jdbcType=VARCHAR},
+            </if>
+            <if test="appId != null" >
+                #{appId,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+
+    <select id="countByExample" parameterType="com.bjdvt.platform.model.TabbarExample" resultType="java.lang.Integer" >
+        select count(*) from tabbar
+        <if test="_parameter != null" >
+            <include refid="Example_Where_Clause" />
+        </if>
+    </select>
+
+    <update id="updateByExampleSelective" parameterType="map" >
+        update tabbar
+        <set >
+            <if test="record.id != null" >
+                id = #{record.id,jdbcType=INTEGER},
+            </if>
+            <if test="record.color != null" >
+                color = #{record.color,jdbcType=VARCHAR},
+            </if>
+            <if test="record.selectedColor != null" >
+                selected_color = #{record.selectedColor,jdbcType=VARCHAR},
+            </if>
+            <if test="record.backgrounColor != null" >
+                backgroun_color = #{record.backgrounColor,jdbcType=VARCHAR},
+            </if>
+            <if test="record.borderStyle != null" >
+                border_style = #{record.borderStyle,jdbcType=VARCHAR},
+            </if>
+            <if test="record.appId != null" >
+                app_id = #{record.appId,jdbcType=VARCHAR},
+            </if>
+        </set>
+        <if test="_parameter != null" >
+            <include refid="Update_By_Example_Where_Clause" />
+        </if>
+    </update>
+
+    <update id="updateByExample" parameterType="map" >
+        update tabbar
+        set id = #{record.id,jdbcType=INTEGER},
+            color = #{record.color,jdbcType=VARCHAR},
+            selected_color = #{record.selectedColor,jdbcType=VARCHAR},
+            backgroun_color = #{record.backgrounColor,jdbcType=VARCHAR},
+            border_style = #{record.borderStyle,jdbcType=VARCHAR},
+            app_id = #{record.appId,jdbcType=VARCHAR}
+        <if test="_parameter != null" >
+            <include refid="Update_By_Example_Where_Clause" />
+        </if>
+    </update>
+
+    <update id="updateByPrimaryKeySelective" parameterType="com.bjdvt.platform.model.Tabbar" >
+        update tabbar
+        <set >
+            <if test="color != null" >
+                color = #{color,jdbcType=VARCHAR},
+            </if>
+            <if test="selectedColor != null" >
+                selected_color = #{selectedColor,jdbcType=VARCHAR},
+            </if>
+            <if test="backgrounColor != null" >
+                backgroun_color = #{backgrounColor,jdbcType=VARCHAR},
+            </if>
+            <if test="borderStyle != null" >
+                border_style = #{borderStyle,jdbcType=VARCHAR},
+            </if>
+            <if test="appId != null" >
+                app_id = #{appId,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+
+    <update id="updateByPrimaryKey" parameterType="com.bjdvt.platform.model.Tabbar" >
+        update tabbar
+        set color = #{color,jdbcType=VARCHAR},
+            selected_color = #{selectedColor,jdbcType=VARCHAR},
+            backgroun_color = #{backgrounColor,jdbcType=VARCHAR},
+            border_style = #{borderStyle,jdbcType=VARCHAR},
+            app_id = #{appId,jdbcType=VARCHAR}
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+</mapper>

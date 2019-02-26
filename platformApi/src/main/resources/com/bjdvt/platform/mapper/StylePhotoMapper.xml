@@ -1,0 +1,353 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bjdvt.platform.mapper.StylePhotoMapper" >
+
+    <resultMap id="BaseResultMap" type="com.bjdvt.platform.model.StylePhoto" >
+        <id column="id" property="id" jdbcType="INTEGER" />
+        <result column="width" property="width" jdbcType="VARCHAR" />
+        <result column="height" property="height" jdbcType="VARCHAR" />
+        <result column="background_color" property="backgroundColor" jdbcType="VARCHAR" />
+        <result column="padding_left" property="paddingLeft" jdbcType="VARCHAR" />
+        <result column="padding_right" property="paddingRight" jdbcType="VARCHAR" />
+        <result column="padding_top" property="paddingTop" jdbcType="VARCHAR" />
+        <result column="padding_bottom" property="paddingBottom" jdbcType="VARCHAR" />
+        <result column="opacity" property="opacity" jdbcType="VARCHAR" />
+        <result column="radius" property="radius" jdbcType="VARCHAR" />
+        <result column="shape" property="shape" jdbcType="VARCHAR" />
+        <result column="style_photocol" property="stylePhotocol" jdbcType="VARCHAR" />
+        <result column="props_id" property="propsId" jdbcType="INTEGER" />
+    </resultMap>
+
+    <sql id="Example_Where_Clause" >
+        <where >
+            <foreach collection="oredCriteria" item="criteria" separator="or" >
+                <if test="criteria.valid" >
+                    <trim prefix="(" suffix=")" prefixOverrides="and" >
+                        <foreach collection="criteria.criteria" item="criterion" >
+                            <choose >
+                                <when test="criterion.noValue" >
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue" >
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue" >
+                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue" >
+                                    and ${criterion.condition}
+                                    <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
+            </foreach>
+        </where>
+    </sql>
+
+    <sql id="Update_By_Example_Where_Clause" >
+        <where >
+            <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+                <if test="criteria.valid" >
+                    <trim prefix="(" suffix=")" prefixOverrides="and" >
+                        <foreach collection="criteria.criteria" item="criterion" >
+                            <choose >
+                                <when test="criterion.noValue" >
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue" >
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue" >
+                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue" >
+                                    and ${criterion.condition}
+                                    <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
+            </foreach>
+        </where>
+    </sql>
+
+    <sql id="Base_Column_List" >
+        id, width, height, background_color, padding_left, padding_right, padding_top, padding_bottom, 
+        opacity, radius, shape, style_photocol, props_id
+    </sql>
+
+    <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.bjdvt.platform.model.StylePhotoExample" >
+        select
+        <if test="distinct" >
+            distinct
+        </if>
+        <include refid="Base_Column_List" />
+        from style_photo
+        <if test="_parameter != null" >
+            <include refid="Example_Where_Clause" />
+        </if>
+        <if test="orderByClause != null" >
+            order by ${orderByClause}
+        </if>
+    </select>
+
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+        select 
+        <include refid="Base_Column_List" />
+        from style_photo
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+        delete from style_photo
+        where id = #{id,jdbcType=INTEGER}
+    </delete>
+
+    <delete id="deleteByExample" parameterType="com.bjdvt.platform.model.StylePhotoExample" >
+        delete from style_photo
+        <if test="_parameter != null" >
+            <include refid="Example_Where_Clause" />
+        </if>
+    </delete>
+
+    <insert id="insert" parameterType="com.bjdvt.platform.model.StylePhoto"  useGeneratedKeys="true" keyProperty="id" >
+        insert into style_photo (id, width, height, 
+            background_color, padding_left, padding_right, 
+            padding_top, padding_bottom, opacity, 
+            radius, shape, style_photocol, 
+            props_id)
+        values (#{id,jdbcType=INTEGER}, #{width,jdbcType=VARCHAR}, #{height,jdbcType=VARCHAR}, 
+            #{backgroundColor,jdbcType=VARCHAR}, #{paddingLeft,jdbcType=VARCHAR}, #{paddingRight,jdbcType=VARCHAR}, 
+            #{paddingTop,jdbcType=VARCHAR}, #{paddingBottom,jdbcType=VARCHAR}, #{opacity,jdbcType=VARCHAR}, 
+            #{radius,jdbcType=VARCHAR}, #{shape,jdbcType=VARCHAR}, #{stylePhotocol,jdbcType=VARCHAR}, 
+            #{propsId,jdbcType=INTEGER})
+    </insert>
+
+    <insert id="insertSelective" parameterType="com.bjdvt.platform.model.StylePhoto" >
+        insert into style_photo
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="id != null" >
+                id,
+            </if>
+            <if test="width != null" >
+                width,
+            </if>
+            <if test="height != null" >
+                height,
+            </if>
+            <if test="backgroundColor != null" >
+                background_color,
+            </if>
+            <if test="paddingLeft != null" >
+                padding_left,
+            </if>
+            <if test="paddingRight != null" >
+                padding_right,
+            </if>
+            <if test="paddingTop != null" >
+                padding_top,
+            </if>
+            <if test="paddingBottom != null" >
+                padding_bottom,
+            </if>
+            <if test="opacity != null" >
+                opacity,
+            </if>
+            <if test="radius != null" >
+                radius,
+            </if>
+            <if test="shape != null" >
+                shape,
+            </if>
+            <if test="stylePhotocol != null" >
+                style_photocol,
+            </if>
+            <if test="propsId != null" >
+                props_id,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="id != null" >
+                #{id,jdbcType=INTEGER},
+            </if>
+            <if test="width != null" >
+                #{width,jdbcType=VARCHAR},
+            </if>
+            <if test="height != null" >
+                #{height,jdbcType=VARCHAR},
+            </if>
+            <if test="backgroundColor != null" >
+                #{backgroundColor,jdbcType=VARCHAR},
+            </if>
+            <if test="paddingLeft != null" >
+                #{paddingLeft,jdbcType=VARCHAR},
+            </if>
+            <if test="paddingRight != null" >
+                #{paddingRight,jdbcType=VARCHAR},
+            </if>
+            <if test="paddingTop != null" >
+                #{paddingTop,jdbcType=VARCHAR},
+            </if>
+            <if test="paddingBottom != null" >
+                #{paddingBottom,jdbcType=VARCHAR},
+            </if>
+            <if test="opacity != null" >
+                #{opacity,jdbcType=VARCHAR},
+            </if>
+            <if test="radius != null" >
+                #{radius,jdbcType=VARCHAR},
+            </if>
+            <if test="shape != null" >
+                #{shape,jdbcType=VARCHAR},
+            </if>
+            <if test="stylePhotocol != null" >
+                #{stylePhotocol,jdbcType=VARCHAR},
+            </if>
+            <if test="propsId != null" >
+                #{propsId,jdbcType=INTEGER},
+            </if>
+        </trim>
+    </insert>
+
+    <select id="countByExample" parameterType="com.bjdvt.platform.model.StylePhotoExample" resultType="java.lang.Integer" >
+        select count(*) from style_photo
+        <if test="_parameter != null" >
+            <include refid="Example_Where_Clause" />
+        </if>
+    </select>
+
+    <update id="updateByExampleSelective" parameterType="map" >
+        update style_photo
+        <set >
+            <if test="record.id != null" >
+                id = #{record.id,jdbcType=INTEGER},
+            </if>
+            <if test="record.width != null" >
+                width = #{record.width,jdbcType=VARCHAR},
+            </if>
+            <if test="record.height != null" >
+                height = #{record.height,jdbcType=VARCHAR},
+            </if>
+            <if test="record.backgroundColor != null" >
+                background_color = #{record.backgroundColor,jdbcType=VARCHAR},
+            </if>
+            <if test="record.paddingLeft != null" >
+                padding_left = #{record.paddingLeft,jdbcType=VARCHAR},
+            </if>
+            <if test="record.paddingRight != null" >
+                padding_right = #{record.paddingRight,jdbcType=VARCHAR},
+            </if>
+            <if test="record.paddingTop != null" >
+                padding_top = #{record.paddingTop,jdbcType=VARCHAR},
+            </if>
+            <if test="record.paddingBottom != null" >
+                padding_bottom = #{record.paddingBottom,jdbcType=VARCHAR},
+            </if>
+            <if test="record.opacity != null" >
+                opacity = #{record.opacity,jdbcType=VARCHAR},
+            </if>
+            <if test="record.radius != null" >
+                radius = #{record.radius,jdbcType=VARCHAR},
+            </if>
+            <if test="record.shape != null" >
+                shape = #{record.shape,jdbcType=VARCHAR},
+            </if>
+            <if test="record.stylePhotocol != null" >
+                style_photocol = #{record.stylePhotocol,jdbcType=VARCHAR},
+            </if>
+            <if test="record.propsId != null" >
+                props_id = #{record.propsId,jdbcType=INTEGER},
+            </if>
+        </set>
+        <if test="_parameter != null" >
+            <include refid="Update_By_Example_Where_Clause" />
+        </if>
+    </update>
+
+    <update id="updateByExample" parameterType="map" >
+        update style_photo
+        set id = #{record.id,jdbcType=INTEGER},
+            width = #{record.width,jdbcType=VARCHAR},
+            height = #{record.height,jdbcType=VARCHAR},
+            background_color = #{record.backgroundColor,jdbcType=VARCHAR},
+            padding_left = #{record.paddingLeft,jdbcType=VARCHAR},
+            padding_right = #{record.paddingRight,jdbcType=VARCHAR},
+            padding_top = #{record.paddingTop,jdbcType=VARCHAR},
+            padding_bottom = #{record.paddingBottom,jdbcType=VARCHAR},
+            opacity = #{record.opacity,jdbcType=VARCHAR},
+            radius = #{record.radius,jdbcType=VARCHAR},
+            shape = #{record.shape,jdbcType=VARCHAR},
+            style_photocol = #{record.stylePhotocol,jdbcType=VARCHAR},
+            props_id = #{record.propsId,jdbcType=INTEGER}
+        <if test="_parameter != null" >
+            <include refid="Update_By_Example_Where_Clause" />
+        </if>
+    </update>
+
+    <update id="updateByPrimaryKeySelective" parameterType="com.bjdvt.platform.model.StylePhoto" >
+        update style_photo
+        <set >
+            <if test="width != null" >
+                width = #{width,jdbcType=VARCHAR},
+            </if>
+            <if test="height != null" >
+                height = #{height,jdbcType=VARCHAR},
+            </if>
+            <if test="backgroundColor != null" >
+                background_color = #{backgroundColor,jdbcType=VARCHAR},
+            </if>
+            <if test="paddingLeft != null" >
+                padding_left = #{paddingLeft,jdbcType=VARCHAR},
+            </if>
+            <if test="paddingRight != null" >
+                padding_right = #{paddingRight,jdbcType=VARCHAR},
+            </if>
+            <if test="paddingTop != null" >
+                padding_top = #{paddingTop,jdbcType=VARCHAR},
+            </if>
+            <if test="paddingBottom != null" >
+                padding_bottom = #{paddingBottom,jdbcType=VARCHAR},
+            </if>
+            <if test="opacity != null" >
+                opacity = #{opacity,jdbcType=VARCHAR},
+            </if>
+            <if test="radius != null" >
+                radius = #{radius,jdbcType=VARCHAR},
+            </if>
+            <if test="shape != null" >
+                shape = #{shape,jdbcType=VARCHAR},
+            </if>
+            <if test="stylePhotocol != null" >
+                style_photocol = #{stylePhotocol,jdbcType=VARCHAR},
+            </if>
+            <if test="propsId != null" >
+                props_id = #{propsId,jdbcType=INTEGER},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+
+    <update id="updateByPrimaryKey" parameterType="com.bjdvt.platform.model.StylePhoto" >
+        update style_photo
+        set width = #{width,jdbcType=VARCHAR},
+            height = #{height,jdbcType=VARCHAR},
+            background_color = #{backgroundColor,jdbcType=VARCHAR},
+            padding_left = #{paddingLeft,jdbcType=VARCHAR},
+            padding_right = #{paddingRight,jdbcType=VARCHAR},
+            padding_top = #{paddingTop,jdbcType=VARCHAR},
+            padding_bottom = #{paddingBottom,jdbcType=VARCHAR},
+            opacity = #{opacity,jdbcType=VARCHAR},
+            radius = #{radius,jdbcType=VARCHAR},
+            shape = #{shape,jdbcType=VARCHAR},
+            style_photocol = #{stylePhotocol,jdbcType=VARCHAR},
+            props_id = #{propsId,jdbcType=INTEGER}
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+</mapper>

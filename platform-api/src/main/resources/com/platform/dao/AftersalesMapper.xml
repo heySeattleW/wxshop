@@ -1,0 +1,351 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.platform.dao.AftersalesMapper">
+
+    <resultMap type="com.platform.entity.AftersalesEntity" id="BaseResultMap">
+        <result property="id" column="id"/>
+        <result property="productId" column="product_id"/>
+        <result property="buyTime" column="buy_time"/>
+        <result property="goodsSpecifitionNames" column="goods_specifition_names"/>
+        <result property="goodsId" column="goods_id"/>
+        <result property="orderId" column="order_id"/>
+        <result property="productSn" column="product_sn"/>
+        <result property="orderSn" column="order_sn"/>
+        <result property="repairEndTime" column="repair_end_time"/>
+    </resultMap>
+
+    <sql id="Example_Where_Clause" >
+        <where >
+            <foreach collection="oredCriteria" item="criteria" separator="or" >
+                <if test="criteria.valid" >
+                    <trim prefix="(" suffix=")" prefixOverrides="and" >
+                        <foreach collection="criteria.criteria" item="criterion" >
+                            <choose >
+                                <when test="criterion.noValue" >
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue" >
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue" >
+                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue" >
+                                    and ${criterion.condition}
+                                    <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
+            </foreach>
+        </where>
+    </sql>
+    <sql id="Update_By_Example_Where_Clause" >
+        <where >
+            <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+                <if test="criteria.valid" >
+                    <trim prefix="(" suffix=")" prefixOverrides="and" >
+                        <foreach collection="criteria.criteria" item="criterion" >
+                            <choose >
+                                <when test="criterion.noValue" >
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue" >
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue" >
+                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue" >
+                                    and ${criterion.condition}
+                                    <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
+            </foreach>
+        </where>
+    </sql>
+    <sql id="Base_Column_List" >
+	    `id`,
+	    `product_id`,
+	    `buy_time`,
+	    `goods_specifition_names`,
+	    `goods_id`,
+	    `order_id`,
+	    `product_sn`,
+	    `order_sn`,
+	    `repair_end_time`
+  	</sql>
+
+
+    <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.platform.entity.example.AftersalesExample" >
+        select
+        <if test="distinct" >
+            distinct
+        </if>
+        <include refid="Base_Column_List" />
+        from nideshop_aftersales
+        <if test="_parameter != null" >
+            <include refid="Example_Where_Clause" />
+        </if>
+        <if test="orderByClause != null" >
+            order by ${orderByClause}
+        </if>
+        <if test="pageStart!=null and pageStart gt -1" >
+            limit ${pageStart},${pageSize}
+        </if>
+    </select>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+        select
+        <include refid="Base_Column_List" />
+        from nideshop_aftersales
+        where id = #{id,jdbcType=BIGINT}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+        delete from nideshop_aftersales
+        where id = #{id,jdbcType=BIGINT}
+    </delete>
+    <delete id="deleteByExample" parameterType="com.platform.entity.example.AftersalesExample" >
+        delete from nideshop_aftersales
+        <if test="_parameter != null" >
+            <include refid="Example_Where_Clause" />
+        </if>
+    </delete>
+    <delete id="deleteBatch">
+        delete from nideshop_aftersales where id in
+<foreach item="id" collection="array" open="(" separator="," close=")">
+          #{id}
+</foreach>
+    </delete>
+    <insert id="insert" parameterType="com.platform.entity.AftersalesEntity" useGeneratedKeys="true" keyProperty="id">
+		insert into nideshop_aftersales(
+          `id`,
+          `product_id`,
+          `buy_time`,
+          `goods_specifition_names`,
+          `goods_id`,
+          `order_id`,
+          `product_sn`,
+          `order_sn`,
+          `repair_end_time`        )
+		values(
+          #{id},
+          #{productId},
+          #{buyTime},
+          #{goodsSpecifitionNames},
+          #{goodsId},
+          #{orderId},
+          #{productSn},
+          #{orderSn},
+          #{repairEndTime}         )
+	</insert>
+
+
+    <insert id="insertSelective" parameterType="com.platform.entity.AftersalesEntity">
+        insert into nideshop_aftersales
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+          <if test="id != null">
+            `id`,
+          </if>
+          <if test="productId != null">
+            `product_id`,
+          </if>
+          <if test="buyTime != null">
+            `buy_time`,
+          </if>
+          <if test="goodsSpecifitionNames != null">
+            `goods_specifition_names`,
+          </if>
+          <if test="goodsId != null">
+            `goods_id`,
+          </if>
+          <if test="orderId != null">
+            `order_id`,
+          </if>
+          <if test="productSn != null">
+            `product_sn`,
+          </if>
+          <if test="orderSn != null">
+            `order_sn`,
+          </if>
+          <if test="repairEndTime != null">
+            `repair_end_time`
+          </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="id != null">
+              #{id},
+            </if>
+            <if test="productId != null">
+              #{productId},
+            </if>
+            <if test="buyTime != null">
+              #{buyTime},
+            </if>
+            <if test="goodsSpecifitionNames != null">
+              #{goodsSpecifitionNames},
+            </if>
+            <if test="goodsId != null">
+              #{goodsId},
+            </if>
+            <if test="orderId != null">
+              #{orderId},
+            </if>
+            <if test="productSn != null">
+              #{productSn},
+            </if>
+            <if test="orderSn != null">
+              #{orderSn},
+            </if>
+            <if test="repairEndTime != null">
+              #{repairEndTime}
+            </if>
+        </trim>
+    </insert>
+
+    <select id="countByExample" parameterType="com.platform.entity.example.AftersalesExample" resultType="java.lang.Integer" >
+        select count(*) from nideshop_aftersales
+        <if test="_parameter != null" >
+            <include refid="Example_Where_Clause" />
+        </if>
+    </select>
+    <update id="updateByExampleSelective" parameterType="map" >
+        update nideshop_aftersales
+        <set>
+          <if test="productId != null">
+              `product_id` = #{productId},
+          </if>
+          <if test="buyTime != null">
+              `buy_time` = #{buyTime},
+          </if>
+          <if test="goodsSpecifitionNames != null">
+              `goods_specifition_names` = #{goodsSpecifitionNames},
+          </if>
+          <if test="goodsId != null">
+              `goods_id` = #{goodsId},
+          </if>
+          <if test="orderId != null">
+              `order_id` = #{orderId},
+          </if>
+          <if test="productSn != null">
+              `product_sn` = #{productSn},
+          </if>
+          <if test="orderSn != null">
+              `order_sn` = #{orderSn},
+          </if>
+          <if test="repairEndTime != null">
+              `repair_end_time` = #{repairEndTime}
+          </if>
+        </set>
+        <if test="_parameter != null" >
+            <include refid="Update_By_Example_Where_Clause" />
+        </if>
+    </update>
+    <update id="updateByExample" parameterType="map" >
+        update nideshop_aftersales
+        <set>
+          `product_id` = #{productId},
+          `buy_time` = #{buyTime},
+          `goods_specifition_names` = #{goodsSpecifitionNames},
+          `goods_id` = #{goodsId},
+          `order_id` = #{orderId},
+          `product_sn` = #{productSn},
+          `order_sn` = #{orderSn},
+          `repair_end_time` = #{repairEndTime}
+        </set>
+        <if test="_parameter != null" >
+            <include refid="Update_By_Example_Where_Clause" />
+        </if>
+    </update>
+
+    <update id="updateByPrimaryKeySelective" parameterType="com.platform.entity.AftersalesEntity">
+        update nideshop_aftersales
+        <set>
+          <if test="productId != null">
+            `product_id` = #{productId},
+          </if>
+          <if test="buyTime != null">
+            `buy_time` = #{buyTime},
+          </if>
+          <if test="goodsSpecifitionNames != null">
+            `goods_specifition_names` = #{goodsSpecifitionNames},
+          </if>
+          <if test="goodsId != null">
+            `goods_id` = #{goodsId},
+          </if>
+          <if test="orderId != null">
+            `order_id` = #{orderId},
+          </if>
+          <if test="productSn != null">
+            `product_sn` = #{productSn},
+          </if>
+          <if test="orderSn != null">
+            `order_sn` = #{orderSn},
+          </if>
+          <if test="repairEndTime != null">
+            `repair_end_time` = #{repairEndTime}
+          </if>
+        </set>
+        where id = #{id}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.platform.entity.AftersalesEntity" >
+        update nideshop_aftersales
+        <set>
+            `product_id` = #{productId},
+            `buy_time` = #{buyTime},
+            `goods_specifition_names` = #{goodsSpecifitionNames},
+            `goods_id` = #{goodsId},
+            `order_id` = #{orderId},
+            `product_sn` = #{productSn},
+            `order_sn` = #{orderSn},
+            `repair_end_time` = #{repairEndTime}
+        </set>
+        where id = #{id,jdbcType=BIGINT}
+  </update>
+
+
+    <select id="queryList" resultType="com.platform.entity.AftersalesEntity">
+        select
+          `id`,
+          `product_id`,
+          `buy_time`,
+          `goods_specifition_names`,
+          `goods_id`,
+          `order_id`,
+          `product_sn`,
+          `order_sn`,
+          `repair_end_time`
+        from nideshop_aftersales
+        WHERE 1=1
+        <if test="name != null and name.trim() != ''">
+            AND name LIKE concat('%',#{name},'%')
+        </if>
+        <choose>
+            <when test="sidx != null and sidx.trim() != ''">
+                order by ${sidx} ${order}
+            </when>
+            <otherwise>
+                order by id desc
+            </otherwise>
+        </choose>
+        <if test="offset != null and limit != null">
+            limit #{offset}, #{limit}
+        </if>
+    </select>
+
+    <select id="queryTotal" resultType="int">
+        select count(*) from nideshop_aftersales
+        WHERE 1=1
+        <if test="name != null and name.trim() != ''">
+            AND name LIKE concat('%',#{name},'%')
+        </if>
+    </select>
+</mapper>

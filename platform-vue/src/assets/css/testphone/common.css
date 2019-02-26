@@ -1,0 +1,38 @@
+/* CSS Document */
+html{height:100%;-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;-webkit-font-smoothing:antialiased;font-size:1rem;}
+body{margin:0;padding:0;min-height:100%; font-family: "iconfont","Microsoft YaHei"  !important; font-size:16px; background:#fff; overflow-x:hidden;}
+
+#scroll{padding-bottom:0.5rem;}  
+h1,h2,h3,h4,h5,h6,p,figure,form,dd,dt,dl{margin:0; font-weight:normal;}  
+table{border-collapse:collapse;border-spacing:0;}  
+img{border:0;vertical-align:middle;-ms-interpolation-mode: bicubic;}  
+a{text-decoration:none; -webkit-tap-highlight-color:rgba(0,0,0,0); font-size:0.14rem;}  
+a:focus{outline:none;-moz-outline:none;}  
+a:visited{outline:none;-moz-outline:none;}  
+ul,li,ol{margin: 0;padding:0;list-style: none outside none;}
+ol li{list-style:none;}  
+em{font-style:normal;}
+ul.inline-style li{float:left;display:inline;}
+button,input,select,textarea{font-size:0.875em;margin: 0;outline: 0 none;vertical-align: baseline;*vertical-align: middle;font-family:"Microsoft YaHei";-webkit-tap-highlight-color:rgba(0,0,0,0);}  
+textarea{overflow: auto;vertical-align: top;resize:none;}  
+button,input{line-height: normal;}  
+button,  
+html input[type="button"],   
+input[type="reset"],  
+input[type="submit"]{-webkit-appearance: button;cursor: pointer;*overflow: visible;}  
+button[disabled],
+input[disabled],
+input[type="checkbox"],
+input[type="radio"]{box-sizing: border-box;padding: 0;*height: 0.13rem;*width: 0.13rem;} 
+button::-moz-focus-inner,  
+input::-moz-focus-inner{border: 0;padding: 0;}
+article,aside,details,figcaption,figure,footer,header,hgroup,nav,section,summary{display: block;}  
+audio,canvas,video{display: inline-block;*display: inline;*zoom: 1;}  
+audio:not([controls]){display: none;height: 0;}  
+input[type="search"]{-webkit-appearance: textfield;-moz-box-sizing: content-box;-webkit-box-sizing: content-box;box-sizing: content-box; box-sizing: border-box;}
+:-moz-placeholder{color: #999;}  
+::-webkit-input-placeholder{color:#999;}
+.g-cf{ clear:both; overflow:hidden; display:block;}
+.left{ float:left;}
+.right{ float:right;}
+.mt10{ margin-top:10px;}

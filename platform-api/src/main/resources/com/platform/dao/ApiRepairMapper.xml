@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.platform.dao.ApiRepairMapper">
+
+    <resultMap type="com.platform.entity.RepairVo" id="BaseResultMap">
+        <result property="id" column="id"/>
+        <result property="aftersalesId" column="aftersales_id"/>
+        <result property="repairTime" column="repair_time"/>
+        <result property="info" column="info"/>
+    </resultMap>
+
+    
+    <sql id="Base_Column_List" >
+	    `id`,
+	    `aftersales_id`,
+	    `repair_time`,
+	    `info`
+  	</sql>
+
+
+  
+
+    <select id="queryList" resultType="com.platform.entity.RepairEntity">
+        select
+          `id`,
+          `aftersales_id`,
+          `repair_time`,
+          `info`
+        from nideshop_repair
+        WHERE 1=1
+        <if test="aftersalesId != null and aftersalesId.trim() != ''">
+            AND aftersales_id=$(aftersalesId)
+        </if>
+        <choose>
+            <when test="sidx != null and sidx.trim() != ''">
+                order by ${sidx} ${order}
+            </when>
+            <otherwise>
+                order by id desc
+            </otherwise>
+        </choose>
+        <if test="offset != null and limit != null">
+            limit #{offset}, #{limit}
+        </if>
+    </select>
+
+</mapper>

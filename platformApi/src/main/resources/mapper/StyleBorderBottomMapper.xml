@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bjdvt.platform.mapper.StyleBorderBottomMapper" >
+
+    <resultMap id="BaseResultMap" type="com.bjdvt.platform.model.StyleBorderBottom" >
+        <id column="id" property="id" jdbcType="INTEGER" />
+        <result column="style" property="style" jdbcType="VARCHAR" />
+        <result column="width" property="width" jdbcType="VARCHAR" />
+        <result column="color" property="color" jdbcType="VARCHAR" />
+        <result column="props_id" property="propsId" jdbcType="INTEGER" />
+    </resultMap>
+
+    <sql id="Example_Where_Clause" >
+        <where >
+            <foreach collection="oredCriteria" item="criteria" separator="or" >
+                <if test="criteria.valid" >
+                    <trim prefix="(" suffix=")" prefixOverrides="and" >
+                        <foreach collection="criteria.criteria" item="criterion" >
+                            <choose >
+                                <when test="criterion.noValue" >
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue" >
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue" >
+                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue" >
+                                    and ${criterion.condition}
+                                    <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
+            </foreach>
+        </where>
+    </sql>
+
+    <sql id="Update_By_Example_Where_Clause" >
+        <where >
+            <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+                <if test="criteria.valid" >
+                    <trim prefix="(" suffix=")" prefixOverrides="and" >
+                        <foreach collection="criteria.criteria" item="criterion" >
+                            <choose >
+                                <when test="criterion.noValue" >
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue" >
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue" >
+                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue" >
+                                    and ${criterion.condition}
+                                    <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
+            </foreach>
+        </where>
+    </sql>
+
+    <sql id="Base_Column_List" >
+        id, style, width, color, props_id
+    </sql>
+
+    <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.bjdvt.platform.model.StyleBorderBottomExample" >
+        select
+        <if test="distinct" >
+            distinct
+        </if>
+        <include refid="Base_Column_List" />
+        from style_border_bottom
+        <if test="_parameter != null" >
+            <include refid="Example_Where_Clause" />
+        </if>
+        <if test="orderByClause != null" >
+            order by ${orderByClause}
+        </if>
+    </select>
+
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+        select 
+        <include refid="Base_Column_List" />
+        from style_border_bottom
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+        delete from style_border_bottom
+        where id = #{id,jdbcType=INTEGER}
+    </delete>
+
+    <delete id="deleteByExample" parameterType="com.bjdvt.platform.model.StyleBorderBottomExample" >
+        delete from style_border_bottom
+        <if test="_parameter != null" >
+            <include refid="Example_Where_Clause" />
+        </if>
+    </delete>
+
+    <insert id="insert" parameterType="com.bjdvt.platform.model.StyleBorderBottom"  useGeneratedKeys="true" keyProperty="id" >
+        insert into style_border_bottom (id, style, width, 
+            color, props_id)
+        values (#{id,jdbcType=INTEGER}, #{style,jdbcType=VARCHAR}, #{width,jdbcType=VARCHAR}, 
+            #{color,jdbcType=VARCHAR}, #{propsId,jdbcType=INTEGER})
+    </insert>
+
+    <insert id="insertSelective" parameterType="com.bjdvt.platform.model.StyleBorderBottom" >
+        insert into style_border_bottom
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="id != null" >
+                id,
+            </if>
+            <if test="style != null" >
+                style,
+            </if>
+            <if test="width != null" >
+                width,
+            </if>
+            <if test="color != null" >
+                color,
+            </if>
+            <if test="propsId != null" >
+                props_id,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="id != null" >
+                #{id,jdbcType=INTEGER},
+            </if>
+            <if test="style != null" >
+                #{style,jdbcType=VARCHAR},
+            </if>
+            <if test="width != null" >
+                #{width,jdbcType=VARCHAR},
+            </if>
+            <if test="color != null" >
+                #{color,jdbcType=VARCHAR},
+            </if>
+            <if test="propsId != null" >
+                #{propsId,jdbcType=INTEGER},
+            </if>
+        </trim>
+    </insert>
+
+    <select id="countByExample" parameterType="com.bjdvt.platform.model.StyleBorderBottomExample" resultType="java.lang.Integer" >
+        select count(*) from style_border_bottom
+        <if test="_parameter != null" >
+            <include refid="Example_Where_Clause" />
+        </if>
+    </select>
+
+    <update id="updateByExampleSelective" parameterType="map" >
+        update style_border_bottom
+        <set >
+            <if test="record.id != null" >
+                id = #{record.id,jdbcType=INTEGER},
+            </if>
+            <if test="record.style != null" >
+                style = #{record.style,jdbcType=VARCHAR},
+            </if>
+            <if test="record.width != null" >
+                width = #{record.width,jdbcType=VARCHAR},
+            </if>
+            <if test="record.color != null" >
+                color = #{record.color,jdbcType=VARCHAR},
+            </if>
+            <if test="record.propsId != null" >
+                props_id = #{record.propsId,jdbcType=INTEGER},
+            </if>
+        </set>
+        <if test="_parameter != null" >
+            <include refid="Update_By_Example_Where_Clause" />
+        </if>
+    </update>
+
+    <update id="updateByExample" parameterType="map" >
+        update style_border_bottom
+        set id = #{record.id,jdbcType=INTEGER},
+            style = #{record.style,jdbcType=VARCHAR},
+            width = #{record.width,jdbcType=VARCHAR},
+            color = #{record.color,jdbcType=VARCHAR},
+            props_id = #{record.propsId,jdbcType=INTEGER}
+        <if test="_parameter != null" >
+            <include refid="Update_By_Example_Where_Clause" />
+        </if>
+    </update>
+
+    <update id="updateByPrimaryKeySelective" parameterType="com.bjdvt.platform.model.StyleBorderBottom" >
+        update style_border_bottom
+        <set >
+            <if test="style != null" >
+                style = #{style,jdbcType=VARCHAR},
+            </if>
+            <if test="width != null" >
+                width = #{width,jdbcType=VARCHAR},
+            </if>
+            <if test="color != null" >
+                color = #{color,jdbcType=VARCHAR},
+            </if>
+            <if test="propsId != null" >
+                props_id = #{propsId,jdbcType=INTEGER},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+
+    <update id="updateByPrimaryKey" parameterType="com.bjdvt.platform.model.StyleBorderBottom" >
+        update style_border_bottom
+        set style = #{style,jdbcType=VARCHAR},
+            width = #{width,jdbcType=VARCHAR},
+            color = #{color,jdbcType=VARCHAR},
+            props_id = #{propsId,jdbcType=INTEGER}
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+</mapper>

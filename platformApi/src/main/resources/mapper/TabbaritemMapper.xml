@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.bjdvt.platform.mapper.TabbaritemMapper" >
+
+    <resultMap id="BaseResultMap" type="com.bjdvt.platform.model.Tabbaritem" >
+        <id column="id" property="id" jdbcType="INTEGER" />
+        <result column="tabbar_id" property="tabbarId" jdbcType="INTEGER" />
+        <result column="page_path" property="pagePath" jdbcType="VARCHAR" />
+        <result column="text" property="text" jdbcType="VARCHAR" />
+        <result column="icon_path" property="iconPath" jdbcType="VARCHAR" />
+        <result column="selected_icon_path" property="selectedIconPath" jdbcType="VARCHAR" />
+        <result column="active" property="active" jdbcType="VARCHAR" />
+    </resultMap>
+
+
+    <sql id="Example_Where_Clause" >
+        <where >
+            <foreach collection="oredCriteria" item="criteria" separator="or" >
+                <if test="criteria.valid" >
+                    <trim prefix="(" suffix=")" prefixOverrides="and" >
+                        <foreach collection="criteria.criteria" item="criterion" >
+                            <choose >
+                                <when test="criterion.noValue" >
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue" >
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue" >
+                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue" >
+                                    and ${criterion.condition}
+                                    <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
+            </foreach>
+        </where>
+    </sql>
+
+    <sql id="Update_By_Example_Where_Clause" >
+        <where >
+            <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+                <if test="criteria.valid" >
+                    <trim prefix="(" suffix=")" prefixOverrides="and" >
+                        <foreach collection="criteria.criteria" item="criterion" >
+                            <choose >
+                                <when test="criterion.noValue" >
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue" >
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue" >
+                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue" >
+                                    and ${criterion.condition}
+                                    <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
+            </foreach>
+        </where>
+    </sql>
+
+    <sql id="Base_Column_List" >
+        id, tabbar_id, page_path, text, icon_path, selected_icon_path, active
+    </sql>
+
+    <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.bjdvt.platform.model.TabbaritemExample" >
+        select
+        <if test="distinct" >
+            distinct
+        </if>
+        <include refid="Base_Column_List" />
+        from tabbaritem
+        <if test="_parameter != null" >
+            <include refid="Example_Where_Clause" />
+        </if>
+        <if test="orderByClause != null" >
+            order by ${orderByClause}
+        </if>
+    </select>
+
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+        select 
+        <include refid="Base_Column_List" />
+        from tabbaritem
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+        delete from tabbaritem
+        where id = #{id,jdbcType=INTEGER}
+    </delete>
+
+    <delete id="deleteByExample" parameterType="com.bjdvt.platform.model.TabbaritemExample" >
+        delete from tabbaritem
+        <if test="_parameter != null" >
+            <include refid="Example_Where_Clause" />
+        </if>
+    </delete>
+
+    <insert id="insert" parameterType="com.bjdvt.platform.model.Tabbaritem" >
+        insert into tabbaritem (id, tabbar_id, page_path, 
+            text, icon_path, selected_icon_path, 
+            active)
+        values (#{id,jdbcType=INTEGER}, #{tabbarId,jdbcType=INTEGER}, #{pagePath,jdbcType=VARCHAR}, 
+            #{text,jdbcType=VARCHAR}, #{iconPath,jdbcType=VARCHAR}, #{selectedIconPath,jdbcType=VARCHAR}, 
+            #{active,jdbcType=VARCHAR})
+    </insert>
+
+    <insert id="insertSelective" parameterType="com.bjdvt.platform.model.Tabbaritem" >
+        insert into tabbaritem
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="id != null" >
+                id,
+            </if>
+            <if test="tabbarId != null" >
+                tabbar_id,
+            </if>
+            <if test="pagePath != null" >
+                page_path,
+            </if>
+            <if test="text != null" >
+                text,
+            </if>
+            <if test="iconPath != null" >
+                icon_path,
+            </if>
+            <if test="selectedIconPath != null" >
+                selected_icon_path,
+            </if>
+            <if test="active != null" >
+                active,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="id != null" >
+                #{id,jdbcType=INTEGER},
+            </if>
+            <if test="tabbarId != null" >
+                #{tabbarId,jdbcType=INTEGER},
+            </if>
+            <if test="pagePath != null" >
+                #{pagePath,jdbcType=VARCHAR},
+            </if>
+            <if test="text != null" >
+                #{text,jdbcType=VARCHAR},
+            </if>
+            <if test="iconPath != null" >
+                #{iconPath,jdbcType=VARCHAR},
+            </if>
+            <if test="selectedIconPath != null" >
+                #{selectedIconPath,jdbcType=VARCHAR},
+            </if>
+            <if test="active != null" >
+                #{active,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+
+    <select id="countByExample" parameterType="com.bjdvt.platform.model.TabbaritemExample" resultType="java.lang.Integer" >
+        select count(*) from tabbaritem
+        <if test="_parameter != null" >
+            <include refid="Example_Where_Clause" />
+        </if>
+    </select>
+
+    <update id="updateByExampleSelective" parameterType="map" >
+        update tabbaritem
+        <set >
+            <if test="record.id != null" >
+                id = #{record.id,jdbcType=INTEGER},
+            </if>
+            <if test="record.tabbarId != null" >
+                tabbar_id = #{record.tabbarId,jdbcType=INTEGER},
+            </if>
+            <if test="record.pagePath != null" >
+                page_path = #{record.pagePath,jdbcType=VARCHAR},
+            </if>
+            <if test="record.text != null" >
+                text = #{record.text,jdbcType=VARCHAR},
+            </if>
+            <if test="record.iconPath != null" >
+                icon_path = #{record.iconPath,jdbcType=VARCHAR},
+            </if>
+            <if test="record.selectedIconPath != null" >
+                selected_icon_path = #{record.selectedIconPath,jdbcType=VARCHAR},
+            </if>
+            <if test="record.active != null" >
+                active = #{record.active,jdbcType=VARCHAR},
+            </if>
+        </set>
+        <if test="_parameter != null" >
+            <include refid="Update_By_Example_Where_Clause" />
+        </if>
+    </update>
+
+    <update id="updateByExample" parameterType="map" >
+        update tabbaritem
+        set id = #{record.id,jdbcType=INTEGER},
+            tabbar_id = #{record.tabbarId,jdbcType=INTEGER},
+            page_path = #{record.pagePath,jdbcType=VARCHAR},
+            text = #{record.text,jdbcType=VARCHAR},
+            icon_path = #{record.iconPath,jdbcType=VARCHAR},
+            selected_icon_path = #{record.selectedIconPath,jdbcType=VARCHAR},
+            active = #{record.active,jdbcType=VARCHAR}
+        <if test="_parameter != null" >
+            <include refid="Update_By_Example_Where_Clause" />
+        </if>
+    </update>
+
+    <update id="updateByPrimaryKeySelective" parameterType="com.bjdvt.platform.model.Tabbaritem" >
+        update tabbaritem
+        <set >
+            <if test="tabbarId != null" >
+                tabbar_id = #{tabbarId,jdbcType=INTEGER},
+            </if>
+            <if test="pagePath != null" >
+                page_path = #{pagePath,jdbcType=VARCHAR},
+            </if>
+            <if test="text != null" >
+                text = #{text,jdbcType=VARCHAR},
+            </if>
+            <if test="iconPath != null" >
+                icon_path = #{iconPath,jdbcType=VARCHAR},
+            </if>
+            <if test="selectedIconPath != null" >
+                selected_icon_path = #{selectedIconPath,jdbcType=VARCHAR},
+            </if>
+            <if test="active != null" >
+                active = #{active,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+
+    <update id="updateByPrimaryKey" parameterType="com.bjdvt.platform.model.Tabbaritem" >
+        update tabbaritem
+        set tabbar_id = #{tabbarId,jdbcType=INTEGER},
+            page_path = #{pagePath,jdbcType=VARCHAR},
+            text = #{text,jdbcType=VARCHAR},
+            icon_path = #{iconPath,jdbcType=VARCHAR},
+            selected_icon_path = #{selectedIconPath,jdbcType=VARCHAR},
+            active = #{active,jdbcType=VARCHAR}
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+</mapper>
